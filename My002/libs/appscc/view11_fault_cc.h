@@ -1,0 +1,28 @@
+static grf_ctrl_fun_t view_ctrls_fun_t[] =
+{
+	{VIEW11_FAULT_IMAGE13_ID,image13_event},
+	{VIEW11_FAULT_IMAGE12_ID,image12_event},
+	{VIEW11_FAULT_IMAGE15_ID,image15_event},
+	{VIEW11_FAULT_IMAGE14_ID,image14_event},
+	{VIEW11_FAULT_IMAGE11_ID,image11_event},
+	{VIEW11_FAULT_IMAGE10_ID,image10_event},
+	{VIEW11_FAULT_IMAGE5_ID,image5_event},
+	{VIEW11_FAULT_IMAGE6_ID,image6_event},
+	{VIEW11_FAULT_IMAGE3_ID,image3_event},
+	{VIEW11_FAULT_IMAGE4_ID,image4_event},
+	{VIEW11_FAULT_IMAGE9_ID,image9_event},
+	{VIEW11_FAULT_IMAGE7_ID,image7_event},
+	{VIEW11_FAULT_CONTAINER0_ID,container0_event},
+	{VIEW11_FAULT_IMAGE8_ID,image8_event},
+	{VIEW11_FAULT_LABEL0_ID,label0_event},
+	{VIEW11_FAULT_IMAGE1_ID,image1_event},
+	{VIEW11_FAULT_IMAGE2_ID,image2_event},
+	{VIEW11_FAULT_IMAGE0_ID,image0_event},
+	{VIEW11_FAULT_IMAGE17_ID,image17_event},
+	{VIEW11_FAULT_IMAGE16_ID,image16_event},
+	{VIEW11_FAULT_CONTAINER1_ID,container1_event},
+	{VIEW11_FAULT_CONTAINER2_ID,container2_event},
+	{VIEW11_FAULT_CONTAINER3_ID,container3_event},
+	{VIEW11_FAULT_CONTAINER4_ID,container4_event},
+	{VIEW11_FAULT_CONTAINER5_ID,container5_event}
+};

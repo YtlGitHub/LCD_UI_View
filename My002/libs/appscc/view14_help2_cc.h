@@ -1,0 +1,24 @@
+static grf_ctrl_fun_t view_ctrls_fun_t[] =
+{
+	{VIEW14_HELP2_IMAGE5_ID,image5_event},
+	{VIEW14_HELP2_IMAGE6_ID,image6_event},
+	{VIEW14_HELP2_IMAGE3_ID,image3_event},
+	{VIEW14_HELP2_IMAGE4_ID,image4_event},
+	{VIEW14_HELP2_IMAGE9_ID,image9_event},
+	{VIEW14_HELP2_IMAGE7_ID,image7_event},
+	{VIEW14_HELP2_CONTAINER0_ID,container0_event},
+	{VIEW14_HELP2_IMAGE8_ID,image8_event},
+	{VIEW14_HELP2_LABEL0_ID,label0_event},
+	{VIEW14_HELP2_IMAGE1_ID,image1_event},
+	{VIEW14_HELP2_LABEL1_ID,label1_event},
+	{VIEW14_HELP2_IMAGE2_ID,image2_event},
+	{VIEW14_HELP2_LABEL2_ID,label2_event},
+	{VIEW14_HELP2_IMAGE11_ID,image11_event},
+	{VIEW14_HELP2_IMAGE0_ID,image0_event},
+	{VIEW14_HELP2_LABEL3_ID,label3_event},
+	{VIEW14_HELP2_IMAGE10_ID,image10_event},
+	{VIEW14_HELP2_LABEL4_ID,label4_event},
+	{VIEW14_HELP2_LABEL5_ID,label5_event},
+	{VIEW14_HELP2_CONTAINER1_ID,container1_event},
+	{VIEW14_HELP2_CONTAINER2_ID,container2_event}
+};

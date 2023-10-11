@@ -1,0 +1,14 @@
+#ifndef __VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_H_
+#define __VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_H_
+
+typedef enum {
+	VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_NULL,
+	VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_LABEL0_ID = 2,
+	VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_IMAGE0_ID = 1
+} view10_01_please_clean_the_dirty_water_tank_ctrls_id_e;
+
+void view10_01_please_clean_the_dirty_water_tank_init(void);
+void view10_01_please_clean_the_dirty_water_tank_entry(void);
+void view10_01_please_clean_the_dirty_water_tank_exit(void);
+
+#endif
