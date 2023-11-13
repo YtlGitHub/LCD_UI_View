@@ -264,10 +264,33 @@ static void switch_highlight()
 	set_img_label_pivot();
 }
 
+//开关语音播报
+static void on_off_Voice_broadcast()
+{
+	//语音播报
+	if (ytl2_voice_image_val == 0)
+	{
+		switch_language_pack("17_00");  //关闭语音
+	}
+	else if (ytl2_voice_image_val == 1)
+	{
+		switch_language_pack("17_01");  //开启语音
+	}
+}
+static u8 ytl_confirmation_v = 0;  //确认键设置按键太快的失灵掉
 //按键任务
 void key_task17_cb()
 {
 	control_key_failure();
+	if (ytl_confirmation_v <= 2) {
+		ytl_confirmation = GRF_FALSE;
+		ytl_confirmation_v++;
+		grf_printf("ytl_confirmation_v\n",ytl_confirmation_v);
+	}
+	else if (ytl_confirmation_v > 2 && ytl_confirmation)
+	{
+		ytl_confirmation_v = 0;
+	}
 	if (ytl_right)
 	{
 		grf_printf("grf_ctrl_get_child_sum(cont0); == %d\n",grf_ctrl_get_child_sum(cont0));
@@ -336,9 +359,9 @@ void key_task17_cb()
 	}
 	else if (ytl_back)
 	{
+		ytl_back = GRF_FALSE;
 		grf_printf("ytl_back_task1 == %d",ytl_back);
 		grf_view_set_dis_view(ytl_view_get_cur_id);
-		ytl_back = GRF_FALSE;
 	}
 	else if (ytl_confirmation)
 	{
@@ -415,9 +438,24 @@ void key_task17_cb()
 			{
 				grf_img_set_src(img2, select_mode_array1[4]);  //音量关
 				grf_label_set_txt(img2_label, "#off");
-				//grf_label_set_txt_color(img2_label, GRF_COLOR_GET(0x52,0x84,0xdd));
 				grf_label_set_txt_color(img2_label, GRF_COLOR_GET(0x38,0xb2,0xef));
 				ytl2_voice_image_val = 0;
+			}
+			//如果是从高音量到关,就高音量播报关闭语音,如果是从关音量到底音量就底音量播报开启语音,否则其他音量就当前音量播报按键音效
+			if (ytl2_voice_image_val == 0)
+			{
+				on_off_Voice_broadcast();
+				volume_size();
+			}
+			else if(ytl2_voice_image_val == 1)
+			{
+				volume_size();
+				on_off_Voice_broadcast();
+			}
+			else
+			{
+				volume_size();
+				key_sound_tr660r_wavplay("dongPart002");  //按键音效
 			}
 		}
 		else if (i == 4)
@@ -507,6 +545,22 @@ void key_task17_cb()
 			//设置旋转或缩放中心
 			grf_img_set_pivot(img2,200,350);
 			grf_ctrl_zoom_pivot(img2_label, 200-grf_ctrl_get_x(img2_label), 350 - grf_ctrl_get_y(img2_label));
+		}
+		//如果是从高音量到关,就高音量播报关闭语音,如果是从关音量到底音量就底音量播报开启语音,否则其他音量就当前音量播报按键音效
+		if (ytl2_voice_image_val == 0)
+		{
+			on_off_Voice_broadcast();
+			volume_size();
+		}
+		else if(ytl2_voice_image_val == 1)
+		{
+			volume_size();
+			on_off_Voice_broadcast();
+		}
+		else
+		{
+			volume_size();
+			key_sound_tr660r_wavplay("dongPart002");  //按键音效
 		}
 		save_system_settings_var();
 	}

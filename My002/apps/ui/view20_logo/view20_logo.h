@@ -8,5 +8,7 @@ typedef enum {
 void view20_logo_init(void);
 void view20_logo_entry(void);
 void view20_logo_exit(void);
+//void task_create20(void);
+//void task_del20(void);
 
 #endif

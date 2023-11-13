@@ -8,7 +8,7 @@
 #define ten_x 120  //十位x坐标
 #define unit_x 250  //个位x坐标
 
-#define switch_speed 245  //切换速度
+#define switch_speed 260  //切换速度
 
 
 
@@ -30,7 +30,6 @@ static grf_ctrl_t* image_fluid_circulate_11 = NULL;  //右边溶液循环动图�
 
 
 //自定义变量
-static u16 i = 0;  //控制y坐标循环跑动变量
 static u8 j = 0;  //个位图切换计数，0-9循环跑
 static u8 k = 0;  //计数百分比0-100
 
@@ -60,7 +59,6 @@ static unsigned char *image_fluid_circulate[EXTERNAL_BUFFER_SIZE] = {
 //第一次进入
 static void first_display(void)
 {
-	i = 0;  //控制y坐标循环跑动变量
 	j = 0;  //个位图切换计数，0-9循环跑
 	k = 0;  //计数百分比0-100
 	grf_img_set_src(obj0,image_digit[1]);
@@ -68,24 +66,24 @@ static void first_display(void)
 	grf_img_set_src(obj2,image_digit[1]);
 	grf_img_set_src(obj3,image_digit[0]);
 	grf_img_set_src(obj4,image_digit[1]);
-	grf_ctrl_set_pos(obj0, hundredth_x,under_y1);
-	grf_ctrl_set_pos(obj1, ten_x,under_y);
-	grf_ctrl_set_pos(obj2, ten_x,under_y1);
-	grf_ctrl_set_pos(obj3, unit_x,under_y);
-	grf_ctrl_set_pos(obj4, unit_x,under_y1);
+	grf_ctrl_set_pos(obj0, hundredth_x,under_y);
+	grf_ctrl_set_pos(obj1, ten_x,above_y);
+	grf_ctrl_set_pos(obj2, ten_x,under_y);
+	grf_ctrl_set_pos(obj3, unit_x,above_y);
+	grf_ctrl_set_pos(obj4, unit_x,under_y);
 }
 
 
 //自定义函数
-static void anim_img_pos(void* var, u16 v)
+static void anim_img_pos(void* var, u32 v)
 {
 	grf_ctrl_set_pos(var,unit_x,v);
 }
-static void anim_img_pos1(void* var, u16 v)
+static void anim_img_pos1(void* var, u32 v)
 {
 	grf_ctrl_set_pos(var,ten_x,v);
 }
-static void anim_img_pos2(void* var, u16 v)
+static void anim_img_pos2(void* var, u32 v)
 {
 	grf_ctrl_set_pos(var,hundredth_x,v);
 }
@@ -93,11 +91,15 @@ static void anim_img_pos2(void* var, u16 v)
 void sterilization_fluid_preparation_digit_task_cd()
 {
 	k++;
+	if (k == 50) {
+		//除菌液已制备完成50%
+		switch_language_pack("05_01_sterilization_fluid_preparation_50%");
+	}
 	//个位向上滑动
 	if (k >= 0 && k <= 100) {
 		//改变个位y坐标位置
 		grf_img_set_src(obj3,image_digit[j]);
-		grf_ctrl_set_pos(obj3,unit_x,192);
+		grf_ctrl_set_pos(obj3,unit_x,above_y);
 		if (j == 9)
 		{
 			grf_img_set_src(obj4,image_digit[0]);
@@ -106,40 +108,40 @@ void sterilization_fluid_preparation_digit_task_cd()
 		{
 			grf_img_set_src(obj4,image_digit[j+1]);
 		}
-		grf_ctrl_set_pos(obj4,unit_x,384);
+		grf_ctrl_set_pos(obj4,unit_x,under_y);
 		//刷新控件位置
 		grf_ctrl_update_location(obj3);
 		grf_ctrl_update_location(obj4);
 		//动画个位向上滑动
-		grf_animation_set(obj3,switch_speed,0,0,192,0,anim_img_pos,0,0,NULL);
-		grf_animation_set(obj4,switch_speed,0,0,384,192,anim_img_pos,0,0,NULL);
+		grf_animation_set(obj3,switch_speed,0,0,above_y,-under_y,anim_img_pos,0,0,NULL);
+		grf_animation_set(obj4,switch_speed,0,0,under_y,above_y,anim_img_pos,0,0,NULL);
 	}
 	//十位向上滑动
 	if (k == 10 || k == 20 || k == 30 || k == 40 || k == 50 || k == 60 || k == 70 || k == 80 || k == 90 || k == 100)
 	{
 		if (k == 100) {
 			grf_img_set_src(obj1,image_digit[k/10-1]);
-			grf_ctrl_set_pos(obj1,unit_x,192);
+			grf_ctrl_set_pos(obj1,unit_x,above_y);
 			grf_img_set_src(obj2,image_digit[0]);
-			grf_ctrl_set_pos(obj2,unit_x,384);
+			grf_ctrl_set_pos(obj2,unit_x,under_y);
 			//动画百位向上滑动
-			grf_animation_set(obj0,switch_speed,0,0,384,192,anim_img_pos2,0,0,NULL);
+			grf_animation_set(obj0,switch_speed,0,0,under_y,above_y,anim_img_pos2,0,0,NULL);
 		}
 		else {
 			grf_img_set_src(obj1,image_digit[k/10-1]);
-			grf_ctrl_set_pos(obj1,unit_x,192);
+			grf_ctrl_set_pos(obj1,unit_x,above_y);
 			grf_img_set_src(obj2,image_digit[k/10]);
-			grf_ctrl_set_pos(obj2,unit_x,384);
+			grf_ctrl_set_pos(obj2,unit_x,under_y);
 		}
 		//刷新控件位置
 		grf_ctrl_update_location(obj1);
 		grf_ctrl_update_location(obj2);
 		//动画十位向上滑动
-		grf_animation_set(obj1,switch_speed,0,0,192,0,anim_img_pos1,0,0,NULL);
-		grf_animation_set(obj2,switch_speed,0,0,384,192,anim_img_pos1,0,0,NULL);
+		grf_animation_set(obj1,switch_speed,0,0,above_y,-under_y,anim_img_pos1,0,0,NULL);
+		grf_animation_set(obj2,switch_speed,0,0,under_y,above_y,anim_img_pos1,0,0,NULL);
 	}
 	//除菌夜制备完成,跳转下一个对应界面
-	if (k > 100)
+	if (k > 101)
 	{
 		ytl1_cleaning_method = GRF_TRUE;
 		if (ytl_view_get_cur_id == GRF_VIEW09_SELF_CLEANING_MODE_ID)

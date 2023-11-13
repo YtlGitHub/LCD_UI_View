@@ -25,7 +25,7 @@ void view02_cleaning_init(void)
 void view02_cleaning_entry(void)
 {
 	grf_printf("view02_entry\n");
-	system("/usr/bin/aplay/mnt/app/grf_app/res/sound/1.wav&");
+
 
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
 	task_create02();
@@ -34,6 +34,8 @@ void view02_cleaning_entry(void)
 
 	//发送串口数据
 	grf_reg_com_send(0x04, 0xA0, 0x01, 0x00, 0x00);
+	//语音播报:智能除菌
+	switch_language_pack("02SmartClean");
 }
 
 

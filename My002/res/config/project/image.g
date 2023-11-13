@@ -7,6 +7,12 @@
   }, {
     "childImageId" : 2,
     "childImagePath" : "background/Smart_background.png"
+  }, {
+    "childImageId" : 4,
+    "childImagePath" : "background/800x800_background.png"
+  }, {
+    "childImageId" : 5,
+    "childImagePath" : "background/800x800_blue_background.png"
   } ]
 }, {
   "imageId" : 2,

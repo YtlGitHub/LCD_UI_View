@@ -24,6 +24,7 @@
         "alpha": 255
     },
     "play_en": false,
-    "txt": "",
+    "txt":"",
+    "volume":70,
     "state": 0
 }

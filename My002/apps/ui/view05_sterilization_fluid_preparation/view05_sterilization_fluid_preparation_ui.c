@@ -1,12 +1,6 @@
 #include "../../apps.h"
 
 
-//.c文件里面自定义函数
-void task_create05();
-void task_del05();
-
-
-
 static void label0_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
@@ -103,12 +97,21 @@ void view05_sterilization_fluid_preparation_entry(void)
 
 	//发送串口数据
 	if (ytl_mode_select_uart == 1) {
+		//语音播报测试:"除菌夜制备中"
+		//tr660r_wavplay("/rodata/sound/05_00_sterilization_fluid_preparation_0%.wav",ytl_volume);
+		switch_language_pack("05_00_sterilization_fluid_preparation_0%");
 		grf_reg_com_send(0x06, 0xA0, 0x04, 0x01, 0x01);
 	}
 	else if (ytl_mode_select_uart == 2) {
+		//语音播报测试:"除菌夜制备中"
+		//tr660r_wavplay("/rodata/sound/05_00_sterilization_fluid_preparation_0%.wav",ytl_volume);
+		switch_language_pack("05_00_sterilization_fluid_preparation_0%");
 		grf_reg_com_send(0x06, 0xA0, 0x04, 0x02, 0x01);
 	}
 	else {
+		//语音播报测试:"智能除菌,除菌夜制备中"
+		//tr660r_wavplay("/rodata/sound/05_00_smart_sterilization_fluid_preparation_0%.wav",ytl_volume);
+		switch_language_pack("05_00_smart_sterilization_fluid_preparation_0%");
 		grf_reg_com_send(0x05, 0xA0, 0x02, 0x01, 0);
 	}
 	//显示顶层音量和清扫图标

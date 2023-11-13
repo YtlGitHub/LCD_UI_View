@@ -12,12 +12,14 @@ typedef enum {
 	VIEW05_STERILIZATION_FLUID_PREPARATION_IMAGE6_ID = 9,
 	VIEW05_STERILIZATION_FLUID_PREPARATION_CONTAINER0_ID = 2,
 	VIEW05_STERILIZATION_FLUID_PREPARATION_CONTAINER1_ID = 10,
-	VIEW05_STERILIZATION_FLUID_PREPARATION_CONTAINER2_ID = 7,
 	VIEW05_STERILIZATION_FLUID_PREPARATION_IMAGE7_ID = 12
 } view05_sterilization_fluid_preparation_ctrls_id_e;
 
 void view05_sterilization_fluid_preparation_init(void);
 void view05_sterilization_fluid_preparation_entry(void);
 void view05_sterilization_fluid_preparation_exit(void);
+//.c文件里面自定义函数
+void task_create05();
+void task_del05();
 
 #endif

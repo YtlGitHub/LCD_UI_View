@@ -56,8 +56,12 @@ void view08_charging_entry(void)
 {
 	grf_reg_com_send(0x05, 0xB0, 0x01, 0x00, 0x00);
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
+	//grf_view_all_set_rotate(2);  //旋转180°
 	task_create08();
 	//发送串口数据:写在grf_hw_uart.c文件里
+
+	//语音播报:开始充电,清洁度检测中,请清理无水箱,避免异味
+	switch_language_pack("08_00StartCharging");
 }
 
 void view08_charging_exit(void)

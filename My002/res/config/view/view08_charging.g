@@ -42,8 +42,8 @@
         "id" : 4,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 545,
-          "y" : 310
+          "x" : 551,
+          "y" : 302
         },
         "size" : {
           "width" : 47,
@@ -86,11 +86,11 @@
         "name" : "label1",
         "id" : 7,
         "pt" : {
-          "x" : 250,
-          "y" : 145
+          "x" : 185,
+          "y" : 140
         },
         "size" : {
-          "width" : 301,
+          "width" : 421,
           "height" : 186
         },
         "scrollbar_t" : { },
@@ -113,7 +113,7 @@
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
-          "font_size" : 200
+          "font_size" : 190
         }
       } ]
     }

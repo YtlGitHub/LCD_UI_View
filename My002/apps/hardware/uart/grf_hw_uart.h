@@ -10,9 +10,16 @@ extern u8 isCmdCompletedBuf[];
 void grf_uart_init(void);
 s32 grf_reg_com_send(u8 len, u8 cmd, u8 date0, u8 date1, u8 date2);
 extern u8 ytl_view_get_cur_id;
+extern u8 ytl_volume;
+void switch_language_pack(char filename[]);
+void key_sound_tr660r_wavplay(char filename[]);
 void control_key_failure(void);
 void power_on(void);
 void save_system_settings_var(void);
+void volume_size(void);
+
+
+//extern void tr660r_wavplay(char filename[],int volume);
 
 
 //自声明

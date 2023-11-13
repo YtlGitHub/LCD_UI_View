@@ -28,6 +28,8 @@ void view16_help4_init(void)
 
 void view16_help4_entry(void)
 {
+	//语音播报"请扫描二维码关注公众号,或拨打电话联系售后。"
+	switch_language_pack("16_help");
 	task_create16();
 }
 

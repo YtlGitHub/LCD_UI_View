@@ -89,13 +89,11 @@ void background_red_yellow_green_task_cb()
 {
 	if (isCmdCompletedBuf[8])
 	{
-		grf_printf("i == %d\n",i);
-
 		i++;
 		if (i > 14) {
 			i=1;
 		}
-		grf_printf("i == %d\n",i);
+		//grf_printf("i == %d\n",i);
 
 		sprintf(label_battery_name_ID7_variable, "%d",ytl_battery_quantity_val);
 		grf_label_set_txt(label_battery_name_ID7, label_battery_name_ID7_variable);
@@ -158,7 +156,8 @@ void key_task08_cb(){
 			grf_view_set_dis_view(GRF_VIEW09_SELF_CLEANING_MODE_ID);
 		}
 		else {
-			grf_printf("语言播报当前电量过低，请稍后自清洁");
+			//语音播报:"当前电量过低,请稍后自清洁。"
+			switch_language_pack("08_01");
 			grf_ctrl_set_hidden(label_name_ID6,GRF_FALSE);
 			label_name_ID6_bool = GRF_TRUE;
 		}

@@ -10,7 +10,8 @@ grf_ctrl_t* voice_image1 = NULL;
 
 
 //创建数组：里面保存图片位置及名字
-u8 *img_src1[] = {"/icon/yingliangguan.png","/icon/foot-icon-volume1.png"};
+//u8 *img_src1[] = {"/icon/yingliangguan.png","/icon/foot-icon-volume1.png"};
+u8 *img_src1[] = {"/icon/volume0.png","/icon/volume1.png","/icon/volume2.png","/icon/volume3.png"};
 
 
 //音量图标
@@ -18,13 +19,21 @@ void voice_image_cb()
 {
 	if (isCmdCompletedBuf[3])
 	{
-		if (ytl2_voice_image_val)
+		if (ytl2_voice_image_val == 1)
 		{
-			grf_img_set_src(voice_image1,img_src1[1]);
+			grf_img_set_src(voice_image1,img_src1[ytl2_voice_image_val]);
+		}
+		else if (ytl2_voice_image_val == 2)
+		{
+			grf_img_set_src(voice_image1,img_src1[ytl2_voice_image_val]);
+		}
+		else if (ytl2_voice_image_val == 3)
+		{
+			grf_img_set_src(voice_image1,img_src1[ytl2_voice_image_val]);
 		}
 		else
 		{
-			grf_img_set_src(voice_image1,img_src1[0]);
+			grf_img_set_src(voice_image1,img_src1[ytl2_voice_image_val]);
 		}
 		isCmdCompletedBuf[3] = GRF_FALSE;
 	}

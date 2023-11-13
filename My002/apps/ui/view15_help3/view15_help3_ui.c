@@ -23,6 +23,8 @@ void view15_help3_init(void)
 
 void view15_help3_entry(void)
 {
+	//语音播报"请翻转机身找到拆手柄孔,并使用十字螺丝刀,顶住孔内弹片进行拆除。"
+	switch_language_pack("15_help");
 	task_create15();
 }
 

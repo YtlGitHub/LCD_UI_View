@@ -72,8 +72,8 @@
     "type" : 2,
     "property" : {
       "pub_t" : {
-        "name" : "container2",
-        "id" : 7,
+        "name" : "container0",
+        "id" : 2,
         "ctrl_type" : 2,
         "pt" : {
           "x" : 75,
@@ -81,7 +81,7 @@
         },
         "size" : {
           "width" : 450,
-          "height" : 191
+          "height" : 192
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -89,7 +89,14 @@
       "styles" : [ {
         "name" : "style",
         "body_t" : {
-          "opa" : 2147483647
+          "opa" : 2147483647,
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
         }
       } ]
     }
@@ -117,40 +124,6 @@
       "rotate_pt" : { }
     }
   }, {
-    "CLASSNAME" : "container",
-    "theme" : "youth",
-    "type" : 2,
-    "property" : {
-      "pub_t" : {
-        "name" : "container0",
-        "id" : 2,
-        "parent_id" : 7,
-        "ctrl_type" : 2,
-        "pt" : {
-          "y" : -192
-        },
-        "size" : {
-          "width" : 450,
-          "height" : 382
-        },
-        "scrollbar_t" : { },
-        "alpha" : 255
-      },
-      "styles" : [ {
-        "name" : "style",
-        "body_t" : {
-          "opa" : 2147483647,
-          "padding" : {
-            "top" : 2147483647,
-            "bottom" : 2147483647,
-            "left" : 2147483647,
-            "right" : 2147483647,
-            "inner" : 2147483647
-          }
-        }
-      } ]
-    }
-  }, {
     "CLASSNAME" : "image",
     "theme" : "youth",
     "type" : 19,
@@ -161,7 +134,7 @@
         "parent_id" : 2,
         "ctrl_type" : 19,
         "pt" : {
-          "y" : 384
+          "y" : 192
         },
         "size" : {
           "width" : 130,
@@ -184,8 +157,7 @@
         "parent_id" : 2,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 120,
-          "y" : 192
+          "x" : 120
         },
         "size" : {
           "width" : 130,
@@ -209,7 +181,7 @@
         "ctrl_type" : 19,
         "pt" : {
           "x" : 120,
-          "y" : 384
+          "y" : 192
         },
         "size" : {
           "width" : 130,
@@ -232,8 +204,7 @@
         "parent_id" : 2,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 250,
-          "y" : 192
+          "x" : 250
         },
         "size" : {
           "width" : 130,
@@ -260,7 +231,7 @@
         "ctrl_type" : 19,
         "pt" : {
           "x" : 250,
-          "y" : 384
+          "y" : 192
         },
         "size" : {
           "width" : 130,

@@ -22,19 +22,18 @@
 		"hidden": false,
 		"alpha": 255
 	},
-	"mode":2,
+	"mode": 2,
 	"popovers": true,
-	"styles": [
-		{
+	"styles": [{
 			"style_part": 0,
 			"style_state": 0,
 			"style_sect": 0,
 			"name": "bg_style_t",
 			"body_t": {
-				"main_color": 4043282,
-				"grad_color": 4043282,
+				"main_color": 16119285,
+				"grad_color": 16119285,
 				"radius": 4,
-				"opa": 255,
+				"opa": 254,
 				"border": {
 					"color": 0,
 					"width": 0,
@@ -53,15 +52,6 @@
 					"right": 16,
 					"inner": 10
 				}
-			},
-			"txt_t": {
-				"color": 15332069,
-				"sel_color": 5609176,
-				"font_lib": "default.ttf",
-				"font_size": 16,
-				"char_space": 0,
-				"line_space": 0,
-				"opa": 255
 			}
 		},
 		{
@@ -70,10 +60,10 @@
 			"style_sect": 0,
 			"name": "btn_style_re",
 			"body_t": {
-				"main_color": 3512591,
-				"grad_color": 3512591,
+				"main_color": 14737632,
+				"grad_color": 14737632,
 				"radius": 4,
-				"opa": 255,
+				"opa": 254,
 				"border": {
 					"color": 0,
 					"width": 0,
@@ -92,15 +82,6 @@
 					"right": 16,
 					"inner": 10
 				}
-			},
-			"txt_t": {
-				"color": 15332069,
-				"sel_color": 5609176,
-				"font_lib": "default.ttf",
-				"font_size": 16,
-				"char_space": 0,
-				"line_space": 0,
-				"opa": 255
 			}
 		},
 		{
@@ -109,10 +90,10 @@
 			"style_sect": 0,
 			"name": "btn_style_pr",
 			"body_t": {
-				"main_color": 2057733,
-				"grad_color": 2057733,
+				"main_color": 8421504,
+				"grad_color": 8421504,
 				"radius": 4,
-				"opa": 255,
+				"opa": 254,
 				"border": {
 					"color": 0,
 					"width": 0,
@@ -131,15 +112,6 @@
 					"right": 16,
 					"inner": 10
 				}
-			},
-			"txt_t": {
-				"color": 15332069,
-				"sel_color": 5609176,
-				"font_lib": "default.ttf",
-				"font_size": 16,
-				"char_space": 0,
-				"line_space": 0,
-				"opa": 255
 			}
 		}
 	]

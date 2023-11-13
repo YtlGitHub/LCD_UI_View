@@ -48,12 +48,14 @@ static void first_display()
 //快速指南
 void quick_guide_task_cb(){
 	i++;
-	if (i > 440) {
+	if (i > 545) {
 		i = 1;
 	}
 	grf_printf("i == %d\n",i);
 
 	if (i == 1) {
+		//语音播报:"把手正面是电源/暂停键"
+		switch_language_pack("13_01_help");
 		grf_ctrl_set_hidden(container0_ID1,GRF_FALSE);
 		grf_ctrl_set_hidden(container1_ID4,GRF_TRUE);
 		grf_ctrl_set_hidden(container2_ID7,GRF_TRUE);
@@ -66,43 +68,63 @@ void quick_guide_task_cb(){
 		grf_ctrl_set_hidden(container9_ID35,GRF_TRUE);
 		grf_ctrl_set_hidden(container10_ID38,GRF_TRUE);
 	}
-	else if (i == 30) {
+	else if (i == 35) {
+		//语音播报:"选择键"
+		switch_language_pack("13_02_help");
 		grf_ctrl_set_hidden(container0_ID1,GRF_TRUE);
 		grf_ctrl_set_hidden(container1_ID4,GRF_FALSE);
 	}
-	else if (i == 50) {
+	else if (i == 55) {
+		//语音播报:"确认键"
+		switch_language_pack("13_03_help");
 		grf_ctrl_set_hidden(container1_ID4,GRF_TRUE);
 		grf_ctrl_set_hidden(container2_ID7,GRF_FALSE);
 	}
-	else if (i == 70) {
+	else if (i == 75) {
+		//语音播报:"返回/帮助键"
+		switch_language_pack("13_04_help");
 		grf_ctrl_set_hidden(container2_ID7,GRF_TRUE);
 		grf_ctrl_set_hidden(container3_ID10,GRF_FALSE);
 	}
-	else if (i == 90) {
+	else if (i == 95) {
+		//语音播报:"运行界面按选择键可以切换模式"
+		switch_language_pack("13_05_help");
 		grf_ctrl_set_hidden(container3_ID10,GRF_TRUE);
 		grf_ctrl_set_hidden(container4_ID13,GRF_FALSE);
 	}
-	else if (i == 120) {
+	else if (i == 140) {
+		//语音播报:"切换模式时按确认键可以进入对应模式"
+		switch_language_pack("13_06_help");
 		grf_ctrl_set_hidden(container4_ID13,GRF_TRUE);
 		grf_ctrl_set_hidden(container5_ID17,GRF_FALSE);
 	}
-	else if (i == 150) {
+	else if (i == 180) {
+		//语音播报:"长按帮助/返回键可以进入帮助界面,获取更多使用指导,短按帮助/返回键可以退出帮助"
+		switch_language_pack("13_07_help");
 		grf_ctrl_set_hidden(container5_ID17,GRF_TRUE);
 		grf_ctrl_set_hidden(container6_ID21,GRF_FALSE);
 	}
-	else if (i == 220) {
+	else if (i == 260) {
+		//语音播报:"顶部是自清洁键,放回底座时按该键可以开启自清洁"
+		switch_language_pack("13_08_help");
 		grf_ctrl_set_hidden(container6_ID21,GRF_TRUE);
 		grf_ctrl_set_hidden(container7_ID29,GRF_FALSE);
 	}
-	else if (i == 270) {
+	else if (i == 325) {
+		//语音播报:"背面是静音键,短按开/关语音。"
+		switch_language_pack("13_09_help");
 		grf_ctrl_set_hidden(container7_ID29,GRF_TRUE);
 		grf_ctrl_set_hidden(container8_ID32,GRF_FALSE);
 	}
-	else if (i == 310) {
+	else if (i == 375) {
+		//语音播报:"机身背面是清水箱,倾斜机身开始清扫"
+		switch_language_pack("13_10_help");
 		grf_ctrl_set_hidden(container8_ID32,GRF_TRUE);
 		grf_ctrl_set_hidden(container9_ID35,GRF_FALSE);
 	}
-	else if (i == 350) {
+	else if (i == 430) {
+		//语音播报:"清扫中,踩住底座,竖起机身,暂停清扫:机身正面是污水箱,每次使用完毕后请清洗污水箱,避免异味"
+		switch_language_pack("13_11_help");
 		grf_ctrl_set_hidden(container9_ID35,GRF_TRUE);
 		grf_ctrl_set_hidden(container10_ID38,GRF_FALSE);
 	}

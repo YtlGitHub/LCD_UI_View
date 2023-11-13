@@ -29,9 +29,9 @@ OBJS_DIR = $(addprefix $(OBJS_PATH),$(PROJ_C_DIR))
 CFLAGS = -Wincompatible-pointer-types
 #包含头文件
 INCLUDE_DIR := -I$(PROJ_INC_INCLUDE)
-LIB_DIR := -L$(PROJ_LIBS_PLATFORM) -L./libs_a/
+LIB_DIR := -L$(PROJ_LIBS_PLATFORM) -L./libs_a/ -L./dll/
 #连接库
-LIBFLAGS = -lgrfui -lmingw32 -lSDL2main -lSDL2 -lfreetype-6
+LIBFLAGS = -lgrfui -lmingw32 -lSDL2 -lfreetype-6 -lavformat-60 -lavformat-60 -lavutil-58 -lswscale-7 -lavcodec-60
 
 TOBJ = tobj
 TAPP = apps

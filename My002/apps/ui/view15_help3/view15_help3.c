@@ -54,7 +54,7 @@ void key_task15_cb(){
 	{
 		ytl_back = GRF_FALSE;
 		grf_printf("返回键\n");
-		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);  //在帮助界面返回
+		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);  //返回帮助界面
 	}
 }
 

@@ -169,7 +169,7 @@ typedef struct {
 
 }grf_anim_set_t;
 //动画设置{动画主体，主体动画时间，(返回动画时间，返回动画延时时间,若无需返回动画，则均设置为0），变化的范围值，动画回调函数（函数参数为void *与u32）支持双函数，不需要则填NULL}
-s32 grf_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay,u32 value_start_a,u32 value_end_a,void *anim_cb_a,u32 value_start_b,u32 value_end_b,void *anim_cb_b);
+s32 grf_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay,s32 value_start_a,s32 value_end_a,void *anim_cb_a,s32 value_start_b,s32 value_end_b,void *anim_cb_b);
 //删除全部动画
 s32 grf_animation_del_all();
 /*********************************label 文本控件************************************/
@@ -482,16 +482,16 @@ s32 grf_gif_set_src(grf_ctrl_t * ctrl_t,u8* gif_src);
 s32 grf_qrcode_updata_data(grf_ctrl_t* ctrl_t,char* txt);
 /*************************************video控件****************************************/
 typedef enum {
-    GRF_VIDEO_PLAY_START,          //开始播放
-    GRF_VIDEO_PLAY_STOP,            //停止播放
-    GRF_VIDEO_PLAY_PAUSE,           //暂停
-    GRF_VIDEO_PLAY_RESUME,          //恢复播放
-}grf_video_play_state_e;
-
-//设置视频播放状态
-s32 grf_video_set_play_state(grf_ctrl_t* ctrl_t,grf_video_play_state_e state);
-//获取视频是否在暂停状态
-grf_bool grf_video_get_play_state(grf_ctrl_t* ctrl_t);
+    GRF_VIDEO_PLAY,          //开始播放
+    GRF_VIDEO_STOP,            //停止播放
+    GRF_VIDEO_PAUSE,           //暂停
+    GRF_VIDEO_RESUME,          //恢复播放
+}grf_video_state_e;
+s32 grf_video_set_pos(grf_ctrl_t* ctrl_t,u16 left_x,u16 left_y,u16 width,u16 height);
+s32 grf_video_set_src(grf_ctrl_t* ctrl_t,u8* video_file);
+s32 grf_video_set_state(grf_ctrl_t* ctrl_t,grf_video_state_e state);
+grf_video_state_e grf_video_get_state(grf_ctrl_t* ctrl_t);
+s32 grf_video_set_volum(grf_ctrl_t* ctrl_t,u8 volum);
 /*************************************英文键盘控件****************************************/
 //将键盘与文本框匹配（写在txtbox事件函数中，event-GRF_EVENT_FOCUSED）
 s32 grf_keyboard_set_txtbox(grf_ctrl_t* keyboard,grf_ctrl_t* txtbox);

@@ -6,7 +6,7 @@ grf_task_t *engineering_test_mode_task18 = NULL;  //工程测试模式任务
 
 
 //创建控件名
-grf_ctrl_t *engineering_test_mode_label0_name_ID1 = NULL;  //创建工程测试模式下方黑色字体说明文字控件名
+grf_ctrl_t *engineering_test_mode_label0_name_ID1 = NULL;  //创建工程测试模式下方白色色字体说明文字控件名
 grf_ctrl_t *engineering_test_mode_label1_pass_fail_name_ID2 = NULL;  //创建工程测试模式中间“测试中”、“PASS”或“FAIL”显示控件名
 grf_ctrl_t *engineering_test_mode_label2_key_name_ID3 = NULL;  //创建按键显示文字控件名
 
@@ -30,8 +30,8 @@ static u8 *key_display_name_array[9] =
 };
 
 
-//按键显示自定义调用函数
-static void key_display_test(u8 data1,u8 data2)
+//控制显示时间
+static void control_display_time(void)
 {
 	i++;
 	grf_printf("i == %d",i);
@@ -45,6 +45,13 @@ static void key_display_test(u8 data1,u8 data2)
 		i = 0;
 		isCmdCompletedBuf[19] = GRF_FALSE;
 	}
+}
+
+
+//按键显示自定义调用函数
+static void key_display_test(u8 data1,u8 data2)
+{
+	control_display_time();
 	if (data1 == 0x08)
 	{
 		if (data2 == 0x00 || data2 == 0x01) {
@@ -69,7 +76,7 @@ void engineering_test_mode_task18_cb()
 	//grf_printf("cmdBuf[0] == %02x,cmdBuf[1] == %02x\n",cmdBuf[0],cmdBuf[1]);
 	if (isCmdCompletedBuf[19])
 	{
-		grf_printf("cmdBuf[1] == %02x,cmdBuf[2] == %02x\n",cmdBuf[1],cmdBuf[2]);
+		grf_printf("cmdBuf[0] == %02x,cmdBuf[1] == %02x,cmdBuf[2] == %02x\n",cmdBuf[0],cmdBuf[1],cmdBuf[2]);
 		if (cmdBuf[0] == 0xD0)
 		{
 			switch (cmdBuf[1])
@@ -188,6 +195,86 @@ void engineering_test_mode_task18_cb()
 				key_display_test(cmdBuf[1],cmdBuf[2]);
 			}
 		}
+		else if(cmdBuf[0] == 0xF0)
+		{
+			control_display_time();
+			if (cmdBuf[1] == 0x01)  //发送电量显示
+			{
+				u8 battery_quantity[10];
+				sprintf(battery_quantity, "%d" "%s",ytl_battery_quantity_val, "%");
+				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,battery_quantity);
+			}
+			if (cmdBuf[1] == 0x02)  //是否缺水
+			{
+				if (cmdBuf[2] == 0x00)  //缺水
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"缺水");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+				if (cmdBuf[2] == 0x01)  //不缺水
+				{
+					grf_printf("不缺水\n");
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"水量正常");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+			}
+		}
+		else if(cmdBuf[0] == 0xB0)
+		{
+			control_display_time();
+			if (cmdBuf[1] == 0x01)  //充电界面
+			{
+				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"充电界面");
+				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+			}
+			if (cmdBuf[1] == 0x02)  //脱离充电
+			{
+				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脱离充电");
+				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+			}
+			if (cmdBuf[1] == 0x03)  //竖起机身停止清扫
+			{
+				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"竖起机身停止清扫");
+				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+			}
+			if (cmdBuf[1] == 0x04)  //倾斜机身开始清扫
+			{
+				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"倾斜机身开始清扫");
+				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+			}
+		}
+		else if(cmdBuf[0] == 0x9A)  //脏污程度
+		{
+			if (cmdBuf[1] == 0x01)  //充电界面
+			{
+				control_display_time();
+				if (cmdBuf[2] == 0x00)  //脏污程度(蓝色)
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脏污程度(蓝色)");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+				if (cmdBuf[2] == 0x01)  //脏污程度(轻度1)
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脏污程度(轻度1)");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+				if (cmdBuf[2] == 0x02)  //脏污程度(轻度2)
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脏污程度(轻度2)");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+				if (cmdBuf[2] == 0x03)  //脏污程度(重度1)
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脏污程度(重度1)");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+				if (cmdBuf[2] == 0x04)  //脏污程度(重度2)
+				{
+					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"脏污程度(重度2)");
+					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
+				}
+			}
+		}
 	}
 }
 
@@ -211,6 +298,6 @@ void task_create18()
 
 void task_del18(void)
 {
-	grf_printf("task_del017\n");
+	grf_printf("task_del18\n");
 	grf_task_del(engineering_test_mode_task18);
 }

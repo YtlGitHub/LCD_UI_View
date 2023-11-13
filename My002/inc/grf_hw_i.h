@@ -74,34 +74,46 @@ s32 grf_wdt_set_timeout(u32 time);
 s32 grf_wdt_keepalive(void);
 /***************************grf gpio****************************/
 typedef enum {
+    GRF_GPIO_GROUP_A=0,
+    GRF_GPIO_GROUP_B,
+    GRF_GPIO_GROUP_C,
+    GRF_GPIO_GROUP_D,
+    GRF_GPIO_GROUP_E,
+    GRF_GPIO_GROUP_F,
+}grf_gpio_pin_e;
+typedef enum {
     GRF_GPIO_INPUT=0,
     GRF_GPIO_OUTPUT,
-    GRF_GPIO_IRQ_RISING,
-    GRF_GPIO_IRQ_FALLING  
 }grf_gpio_mode_e;
-
+typedef enum {
+    GRF_GPIO_IRQ_RISING,
+    GRF_GPIO_IRQ_FALLING,
+    GRF_GPIO_IRQ_RISING_FALLING
+}grf_gpio_irq_mode_e;
+typedef void grf_gpio_irq_t;
+typedef void(*gpio_irq_task)(grf_gpio_irq_t *irq_t);
 typedef struct{
-    u8 irqnum;
-    u8 irq_pin[10];
-    u8 irq_mode[10];     
-}grf_gpio_irq_t;
-
+    u8 irq_group;
+    u8* irq_pins;       
+    u8 gpio_pin_num;
+    grf_gpio_irq_mode_e mode_e;
+    gpio_irq_task irq_task;
+}grf_gpio_irq_para_t;
 typedef struct
 {
-    u8 gpio_type;
+    u8 gpio_group;
     u8 gpio_pin;
     grf_gpio_mode_e gpio_mode;
-    grf_gpio_irq_t irq_para;
 }grf_gpio_para_t;
 
 
 s32 grf_gpio_init(grf_gpio_para_t* para_t);
-s32 grf_gpio_setPin(u8 gpio_type,u8 gpio_pin,u8 value);
-s32 grf_gpio_readInputPin(u8 gpio_type,u8 gpio_pin);
-s32 grf_gpio_readOutputPin(u8 gpio_type,u8 gpio_pin);
-
-typedef void(*irq_task)(void);
-s32 grf_gpio_set_irq(grf_gpio_para_t* para_t,irq_task irqfun);
+s32 grf_gpio_setPin(u8 gpio_group,u8 gpio_pin,u8 value);
+s32 grf_gpio_readInputPin(u8 gpio_group,u8 gpio_pin);
+s32 grf_gpio_readOutputPin(u8 gpio_group,u8 gpio_pin);
+s32 grf_gpio_group_set_irq(grf_gpio_irq_para_t irq_para_t);
+s32 grf_gpio_group_get_irq_pin(grf_gpio_irq_t *irq_t);
+s32 grf_gpio_group_get_irq_mode(grf_gpio_irq_t *irq_t);
 /***************************grf rtc****************************/
 typedef  struct 
 {
@@ -135,9 +147,9 @@ typedef struct
     u32     work_mode;    //SPI工作模式 
 	u8		nbits;        //位数
     u16		delay;        //发送时间间隔     
-}grf_spi_msg_t;
+}grf_spi_para_t;
 
-s32 grf_spi_init(grf_spi_msg_t *para_t);
+s32 grf_spi_init(grf_spi_para_t *para_t);
 s32 grf_spi_transfer(u8 *tx,u8 *rx,u32 len);
 
 /****************************IIC*****************************/
@@ -146,10 +158,10 @@ typedef struct
 {
     u8      slave_addr;  //设备地址
     u8      reg_addr;    //寄存器地址
-    u8      addr_width;  //数据宽度
-}grf_iic_msg_t;
+    u8      reg_addr_width;  //寄存器字节个数
+}grf_iic_para_t;
 
-s32 grf_iic_init(grf_iic_msg_t* para_t);
+s32 grf_iic_init(grf_iic_para_t* para_t);
 s32 grf_iic_read(u16 addr, u8 buff[], u16 len);
 s32 grf_iic_write(u16 addr, u8 buff[], u16 len);
 

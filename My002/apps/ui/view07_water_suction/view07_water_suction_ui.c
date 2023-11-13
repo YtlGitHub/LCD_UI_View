@@ -30,6 +30,8 @@ void view07_water_suction_entry(void)
 	grf_view_set_dis_view(GRF_VIEW04_BATTERY_WATER_ID);
 	//发送串口数据
 	grf_reg_com_send(0x04, 0xA0, 0x03, 0x00, 0x00);
+	//语音播报:智能吸水
+	switch_language_pack("07StartWater");
 }
 
 void view07_water_suction_exit(void)

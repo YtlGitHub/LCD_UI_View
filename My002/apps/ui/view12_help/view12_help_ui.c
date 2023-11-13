@@ -36,6 +36,8 @@ void view12_help_entry(void)
 	task_create12();
 	//发送串口数据
 	grf_reg_com_send(0x04, 0xA0, 0x00, 0x00, 0x00);
+	//语音播报测试:"欢迎来到帮助界面"
+	switch_language_pack("12_help");
 }
 
 void view12_help_exit(void)

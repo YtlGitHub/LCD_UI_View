@@ -167,8 +167,8 @@ static void key_task01_cb(){
 
 	if (ytl_right)
 	{
-		grf_printf("ytl_right_task1 == %d\n",ytl_right);
 		ytl_right = GRF_FALSE;
+		grf_printf("ytl_right_task1 == %d\n",ytl_right);
 
 		for(u8 i=0;i<4;i++)
 		{
@@ -204,11 +204,12 @@ static void key_task01_cb(){
 
 	}
 	else if (ytl_back) {
+		ytl_back = GRF_FALSE;
 		grf_printf("ytl_back_task1 == %d",ytl_back);
 		grf_view_set_dis_view(ytl_view_get_cur_id);
-		ytl_back = GRF_FALSE;
 	}
 	else if (ytl_confirmation) {
+		ytl_confirmation = GRF_FALSE;
 		grf_printf("确认值i: == %d\n",i);
 		if (i == 1)
 		{
@@ -226,7 +227,6 @@ static void key_task01_cb(){
 		{
 			grf_view_set_dis_view(GRF_VIEW17_SYSTEM_SETTING_ID);  //系统设置
 		}
-		ytl_confirmation = GRF_FALSE;
 	}
 	else if (ytl_help) {
 		ytl_help = GRF_FALSE;

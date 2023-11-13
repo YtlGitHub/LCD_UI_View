@@ -105,11 +105,11 @@
         "name" : "label0",
         "id" : 4,
         "pt" : {
-          "x" : 75,
+          "x" : 60,
           "y" : 450
         },
         "size" : {
-          "width" : 101,
+          "width" : 120,
           "height" : 56
         },
         "scrollbar_t" : { },

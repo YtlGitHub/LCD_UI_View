@@ -58,6 +58,10 @@ void grf_task_ready(grf_task_t * task_t);
 void grf_task_once(grf_task_t *task_t);
 //复位任务
 void grf_task_reset(grf_task_t * task_t);
+//设置任务暂停
+void grf_task_set_cb_pause(grf_task_t *task_t);
+//任务恢复
+void grf_task_set_cb_resume(grf_task_t *task_t);
 /***************************grf resource****************************/
 //根据ID获取图片名
 u8* grf_j2s_res_img_get(u32 dirID,u32 fileID);

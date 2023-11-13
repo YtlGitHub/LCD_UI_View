@@ -6,8 +6,8 @@
   "off_x" : 0,
   "off_y" : 0,
   "language" : "zh",
-  "version" : "1.1.4.2",
-  "start_page" : 18,
+  "version" : "1.1.5",
+  "start_page" : 21,
   "scnP_t" : {
     "scnP_page" : 2,
     "scnP_swPage_time" : 0,

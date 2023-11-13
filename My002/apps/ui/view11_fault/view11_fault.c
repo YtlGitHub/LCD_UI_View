@@ -200,6 +200,8 @@ void fault_task_cb()
 					if (ytl_fault[11] == 0)
 					{
 						grf_printf("语言播报：请安装清水箱\n");
+						//语音播报测试:"请安装清水箱"
+						switch_language_pack("11_01");
 						//发送串口数据
 						grf_reg_com_send(0x05, 0xE0, 0x01, 0x00, 0x00);
 
@@ -238,6 +240,8 @@ void fault_task_cb()
 					if (ytl_fault[12] == 0)
 					{
 						grf_printf("语言播报：请安装污水箱\n");
+						//语音播报测试:"请安装污水箱"
+						switch_language_pack("11_02");
 						grf_reg_com_send(0x05, 0xE0, 0x02, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_install_dirty_water_tank");
@@ -276,6 +280,8 @@ void fault_task_cb()
 					if (ytl_fault[13] == 0)
 					{
 						grf_printf("语言播报：请清理滚刷\n");
+						//语音播报测试:"请清理滚刷"
+						switch_language_pack("11_03");
 						grf_reg_com_send(0x05, 0xE0, 0x03, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_clean_the_brush_roll");
@@ -403,6 +409,8 @@ void fault_task_cb()
 					if (ytl_fault[14] == 0)
 					{
 						grf_printf("语言播报：请加清水\n");
+						//语音播报测试:"请加清水"
+						switch_language_pack("11_04");
 						grf_reg_com_send(0x05, 0xE0, 0x04, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_add_water");
@@ -448,6 +456,8 @@ void fault_task_cb()
 					if (ytl_fault[15] == 0)
 					{
 						grf_printf("语言播报：请清理污水箱\n");
+						//语音播报测试:"请清理污水箱"
+						switch_language_pack("11_05");
 						grf_reg_com_send(0x05, 0xE0, 0x05, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_clean_the_dirty_water_tank");
@@ -501,7 +511,9 @@ void fault_task_cb()
 					grf_printf("ytl_fault[6] == %d\n",ytl_fault[6]);
 					if (ytl_fault[16] == 0)
 					{
-						grf_printf("语言播报：请清理污水箱\n");
+						grf_printf("语言播报：风机故障\n");
+						//语音播报测试:"请清理污水箱"
+						switch_language_pack("11_06");
 						grf_reg_com_send(0x05, 0xE0, 0x06, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#fan_failure");
