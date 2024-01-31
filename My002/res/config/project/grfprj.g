@@ -5,8 +5,8 @@
   "rotate" : 0,
   "off_x" : 0,
   "off_y" : 0,
-  "language" : "zh",
-  "version" : "1.1.5",
+  "language" : "en",
+  "version" : "1.1.6",
   "start_page" : 21,
   "scnP_t" : {
     "scnP_page" : 2,

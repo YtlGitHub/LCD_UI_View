@@ -20,9 +20,8 @@ static grf_ctrl_t* qingsao_arc1 = NULL;  //红色外圈脏污程度图标
 //电池清水图片重复显示自定义变量
 static u8 img_repeat_display = 1;
 static s8 d = 0;  //arc外圈值 百分比0-100
-static u8 e = 5;  //arc外圈每次运动大小
+static u8 e = 3;  //arc外圈每次运动大小
 static u8 battery_quantity[1];  //电量显示
-//static u8 water[1];  //清水或溶液显示
 
 
 //自定义数组
@@ -44,12 +43,29 @@ static u8 *water_icon_name[EXTERNAL_BUFFER_SIZE] = {
 };  //清水图标文件名数组保存
 
 
+//脏污程度渐变色图标,跟随脏污程度红色外圈值变化而变化
+static void gradient_icon(s8 value)
+{
+	grf_ctrl_t *img2 = grf_ctrl_get_child(qingsao_arc1,0);
+	if(value <50){
+		grf_img_set_rotate_angel(img2,value*2.7+228);
+	}else{
+		grf_img_set_rotate_angel(img2,value*2.7-132);
+	}
+	if(value <= 0 || value >= 100){
+		grf_ctrl_set_hidden(img2,GRF_TRUE);
+	}else{
+		grf_ctrl_set_hidden(img2,GRF_FALSE);
+	}
+}
+
+
 //电池 清水 图标重复显示
 static void battery_water_task_cb()
 {
 	if (ytl_erected)
 	{
-		grf_printf("img_repeat_display == %d\n",img_repeat_display);
+		//grf_printf("img_repeat_display == %d\n",img_repeat_display);
 
 		if (ytl_battery_quantity_val >=0 && ytl_battery_quantity_val <= 10)
 		{
@@ -100,11 +116,9 @@ static void battery_water_task_cb()
 
 		//清水溶液文字显示
 		if (ytl1_cleaning_method) {
-			//sprintf(water, "%s", "#solution");
 			grf_label_set_txt(water6,"#solution");
 		}
 		else {
-			//sprintf(water, "%s", "#water");
 			grf_label_set_txt(water6,"#water");
 		}
 		isCmdCompletedBuf[4] = GRF_FALSE;
@@ -130,7 +144,6 @@ static void red_outer_circle_erected()
 		}
 		else if(ytl_dirty_degree == 1)
 		{
-			grf_ctrl_set_hidden(qingsao_arc1, GRF_FALSE);
 			if (d > 25)
 			{
 				d = 5;
@@ -138,7 +151,6 @@ static void red_outer_circle_erected()
 		}
 		else if(ytl_dirty_degree == 2)
 		{
-			grf_ctrl_set_hidden(qingsao_arc1, GRF_FALSE);
 			if (d > 50)
 			{
 				d = 30;
@@ -146,7 +158,6 @@ static void red_outer_circle_erected()
 		}
 		else if(ytl_dirty_degree == 3)
 		{
-			grf_ctrl_set_hidden(qingsao_arc1, GRF_FALSE);
 			if (d > 75)
 			{
 				d = 55;
@@ -154,7 +165,6 @@ static void red_outer_circle_erected()
 		}
 		else if(ytl_dirty_degree == 4)
 		{
-			grf_ctrl_set_hidden(qingsao_arc1, GRF_FALSE);
 			if (d > 100)
 			{
 				d = 80;
@@ -162,16 +172,16 @@ static void red_outer_circle_erected()
 		}
 		else
 		{
-			grf_printf("脏污程度指令有误:ytl_dirty_degree == %d\n",ytl_dirty_degree);
+			//grf_printf("ERROR! ytl_dirty_degree == %d\n",ytl_dirty_degree);
 		}
 		grf_arc_set_value(qingsao_arc1,d);
+		gradient_icon(d);
 	}
 }
 
 //红色外圈,跑马灯
 static void red_outer_circle_task_cb()
 {
-
 	if (ytl_erected)
 	{
 		red_outer_circle_erected();
@@ -183,13 +193,21 @@ static void red_outer_circle_task_cb()
 			red_outer_circle_erected();
 		}
 		else {
-			grf_printf("d == %d\n",d);
+			//grf_printf("d == %d\n",d);
 			//竖起机身d的值改为0
 			d -= e;
-			if (d <= 0) {
+			if (d <= 0)
+			{
 				ytl_dirty_degree = 0;
 			}
 			grf_arc_set_value(qingsao_arc1,d);
+			gradient_icon(d);
+		}
+	}
+	if (ytl_view_get_cur_id == GRF_VIEW18_ENGINEERING_TEST_MODE_ID) {
+		if (d < 0)
+		{
+			d = 0;
 		}
 	}
 }
@@ -197,7 +215,7 @@ static void red_outer_circle_task_cb()
 
 void task_create04()
 {
-	grf_printf("task_create4\n");
+	//grf_printf("task_create4\n");
 
 	//获取控件
 	battery2 = grf_ctrl_get_form_id(GRF_VIEW04_BATTERY_WATER_ID, VIEW04_BATTERY_WATER_IMAGE0_ID);
@@ -221,7 +239,7 @@ void task_create04()
 
 void task_del04()
 {
-	grf_printf("task_del04\n");
+	//grf_printf("task_del04\n");
 	grf_task_del(battery_water_circle_task);
 	grf_task_del(red_outer_circle_task);
 }

@@ -30,6 +30,16 @@ static void label2_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
 }
+
+static void image2_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view04_battery_water_cc.h"
 void view04_battery_water_init(void)
 {
@@ -43,6 +53,5 @@ void view04_battery_water_entry(void)
 
 void view04_battery_water_exit(void)
 {
-	grf_printf("view04_battery_water_exit\n");
 	task_del04();
 }

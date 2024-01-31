@@ -33,5 +33,8 @@ typedef enum {
 void view11_fault_init(void);
 void view11_fault_entry(void);
 void view11_fault_exit(void);
+//.c文件里面自定义函数
+void task_create11();
+void task_del11();
 
 #endif

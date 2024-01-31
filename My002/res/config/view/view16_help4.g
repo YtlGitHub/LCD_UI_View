@@ -57,12 +57,12 @@
         "id" : 2,
         "parent_id" : 1,
         "pt" : {
-          "x" : 52,
+          "x" : 18,
           "y" : 34
         },
         "size" : {
-          "width" : 436,
-          "height" : 86
+          "width" : 500,
+          "height" : 70
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -73,6 +73,15 @@
       "txt" : "400-888-8888",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",

@@ -1,10 +1,12 @@
 #ifndef __GRF_HW_UART_H_
 #define __GRF_HW_UART_H_
 
-
+#define EXTERNAL_BUFFER_SIZE_languageBuf 4
+extern u8 *languageBuf[EXTERNAL_BUFFER_SIZE_languageBuf];
 extern u8 cmdBuf[];
 extern u8 isCmdCompletedBuf[];
-#define EXTERNAL_BUFFER_SIZE 25 //25
+#define EXTERNAL_BUFFER_SIZE 100 //100
+#define RTOS_EXECUTEBUFF 0
 
 
 void grf_uart_init(void);

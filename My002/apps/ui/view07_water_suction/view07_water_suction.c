@@ -33,13 +33,13 @@ void water_suction_task_image_task_cb()
 {
 	if (isCmdCompletedBuf[7]) {
 		if (ytl_erected) {
-			grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
 			if (ytl_dirty_degree <= 2 && ytl_dirty_degree >= 0) {
-				grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
+				//grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
 				grf_img_set_src(water_suction_task_image2, image_name_water_suction[i]);
 			}
 			else if(ytl_dirty_degree <= 4 && ytl_dirty_degree > 2){
-				grf_printf("i++ == %d,橘色显示\n", i);
+				//grf_printf("i++ == %d,橘色显示\n", i);
 				grf_img_set_src(water_suction_task_image2, image_name_water_suction[i+4]);
 			}
 			i++;
@@ -49,7 +49,7 @@ void water_suction_task_image_task_cb()
 			}
 		}
 		else {
-			grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
 			grf_img_set_src(water_suction_task_image2, image_name_water_suction[i]);
 			isCmdCompletedBuf[7] = GRF_FALSE;
 
@@ -70,7 +70,7 @@ void key_task07_cb(){
 
 void task_create07()
 {
-	grf_printf("task_create7\n");
+	//grf_printf("task_create7\n");
 
 	//获取控件
 	water_suction_task_image2 = grf_ctrl_get_form_id(GRF_VIEW07_WATER_SUCTION_ID, VIEW07_WATER_SUCTION_IMAGE0_ID);
@@ -86,7 +86,7 @@ void task_create07()
 
 void task_del07()
 {
-	grf_printf("task_del07\n");
+	//grf_printf("task_del07\n");
 	grf_task_del(key_task07);
 	grf_task_del(water_suction_task);
 }

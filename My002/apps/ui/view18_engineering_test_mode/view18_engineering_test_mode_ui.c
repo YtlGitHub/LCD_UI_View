@@ -16,6 +16,26 @@ static void label2_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
 }
+
+static void label3_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
+
+static void arc0_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view18_engineering_test_mode_cc.h"
 void view18_engineering_test_mode_init(void)
 {
@@ -32,9 +52,10 @@ void view18_engineering_test_mode_entry(void)
 
 void view18_engineering_test_mode_exit(void)
 {
+	task_del18();
 	grf_view_hide_layer(GRF_LAYER_STATE);
 	grf_view_hide_layer(GRF_LAYER_TOP);
 	view03_voice_icon_exit();
 	view04_battery_water_exit();
-	task_del18();
+
 }

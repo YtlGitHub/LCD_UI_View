@@ -1,6 +1,16 @@
 #include "../../apps.h"
 
 
+
+static void label0_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view20_logo_cc.h"
 void view20_logo_init(void)
 {
@@ -10,11 +20,10 @@ void view20_logo_init(void)
 void view20_logo_entry(void)
 {
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
-	grf_reg_com_send(0x04, 0x90, 0x02, 0, 0);  //获取电量
-	//task_create20();
+	task_create20();
 }
 
 void view20_logo_exit(void)
 {
-	//task_del20();
+	task_del20();
 }

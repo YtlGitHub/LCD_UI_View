@@ -1,11 +1,6 @@
 #include "../../apps.h"
 
 
-//.c文件里面自定义函数
-void task_create11();
-void task_del11();
-
-
 static void image0_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
@@ -133,7 +128,6 @@ static void label0_event(grf_ctrl_t *ctrl, grf_event_e event)
 #include "../../../libs/appscc/view11_fault_cc.h"
 void view11_fault_init(void)
 {
-	grf_printf("view11_fault_init\n");
 	grf_view_create(GRF_VIEW11_FAULT_ID,view_ctrls_fun_t,sizeof(view_ctrls_fun_t)/sizeof(grf_ctrl_fun_t));
 }
 

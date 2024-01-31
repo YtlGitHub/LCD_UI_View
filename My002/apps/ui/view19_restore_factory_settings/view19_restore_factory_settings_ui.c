@@ -19,6 +19,7 @@ void view19_restore_factory_settings_init(void)
 
 void view19_restore_factory_settings_entry(void)
 {
+	key_sound_tr660r_wavplay("du");  //按键音效
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
 	//发送串口数据
 	grf_reg_com_send(0x04, 0xC0, 0x04, 0, 0);
@@ -27,7 +28,7 @@ void view19_restore_factory_settings_entry(void)
 	ytl0_roller_brush_lighting = GRF_TRUE;
 	ytl1_cleaning_method = GRF_FALSE;
 	ytl2_voice_image_val = 2;
-	ytl3_switch_language = 0;
+	//ytl3_switch_language = 0;  //恢复出厂设置不需要改变语言
 	save_system_settings_var();
 //	task_create19();
 }

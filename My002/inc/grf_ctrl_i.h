@@ -121,6 +121,15 @@ u32 grf_map_relation(u32 x,u32 min_in,u32 max_in,u32 min_out,u32 max_out);
 s32 grf_ctrl_zoom_set(grf_ctrl_t* ctrl_t,u32 num);
 //设置控件缩放中心(默认状态)
 s32 grf_ctrl_zoom_pivot(grf_ctrl_t* ctrl_t,u32 x,u32 y);
+//判断控件是否处于当前状态
+grf_bool grf_ctrl_state_judge(grf_ctrl_t* ctrl_t,grf_obj_state_e state);
+//获取控件x轴滚动量
+s32 grf_ctrl_scroll_get_x(grf_ctrl_t* ctrl_t);
+//获取控件y轴滚动量
+s32 grf_ctrl_scroll_get_y(grf_ctrl_t* ctrl_t);
+//设置控件的滚动量，可设置动画
+s32 grf_ctrl_scroll_set(grf_ctrl_t* ctrl_t,s32 x,s32 y,grf_bool anim);
+
 /*********************************event 事件************************************/
 typedef enum {
     GRF_EVENT_ALL = 0,
@@ -155,21 +164,30 @@ s32 grf_event_send(grf_ctrl_t* ctrl_t, grf_event_e event, const void * data);
 //获取GRF_EVENT_VALUE_CHANGED 事件的值
 //void* grf_event_get_data();
 /*********************************动画************************************/
-typedef struct {
+typedef enum {
+    GRF_ANIM_PATH_NONE=0,
+    GRF_ANIM_PATH_LINEAR,             //线性动画
+    GRF_ANIM_PATH_START_SLOW,           //开始慢
+    GRF_ANIM_PATH_END_SLOW,             //结尾慢
+    GRF_ANIM_PATH_START_END_SLOW,       //开始与结尾均慢
+    GRF_ANIM_PATH_BOUNCE,               //触墙弹跳效果
+    GRF_ANIM_PATH_END_BREAK,            //开始正常，结尾突变
+}grf_anim_path_e;
+typedef struct 
+{
     u32 time;                   //动画时长
-    u32 back_time;
-    u32 back_time_delay;
-    u32 value_start_a;
-    u32 value_end_a;
-    void *anim_cb_a;
-    u32 value_start_b;
-    u32 value_end_b;
-    void *anim_cb_b;
-    void *anim_reday_cb;
-
+    u32 back_time;              //返回动画时长(设置后动画按原路径反向运行还原，若不需要返回动画此项与下一项均设置0)
+    u32 back_time_delay;        //返回动画延时
+    s32 value_start_a;          //动画开始值
+    s32 value_end_a;            //动画结束值
+    void *anim_cb_a;            //动画回调函数
+    s32 value_start_b;
+    s32 value_end_b;
+    void *anim_cb_b;            //同上，可为一个控件设置双动画，如不需要均设置NULL
+    void *anim_reday_cb;        //动画结束后调用（不包含返回动画时间）
+    grf_anim_path_e mode;       //动画运行效果
 }grf_anim_set_t;
-//动画设置{动画主体，主体动画时间，(返回动画时间，返回动画延时时间,若无需返回动画，则均设置为0），变化的范围值，动画回调函数（函数参数为void *与u32）支持双函数，不需要则填NULL}
-s32 grf_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay,s32 value_start_a,s32 value_end_a,void *anim_cb_a,s32 value_start_b,s32 value_end_b,void *anim_cb_b);
+s32 grf_animation_set(grf_ctrl_t* ctrl,grf_anim_set_t *anim_t);
 //删除全部动画
 s32 grf_animation_del_all();
 /*********************************label 文本控件************************************/

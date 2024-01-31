@@ -156,33 +156,51 @@ static void select_mode_value_var_i(){
 	else if (ytl_view_get_cur_id == 7) {
 		i = 1;
 	}
-	grf_printf("右键值i == %d\n",i);
+	//grf_printf("右键值i == %d\n",i);
 	first_display();
 	grf_label_set_txt(label_name_ID1, select_mode_value_array[i-1]);  //1智能清扫,2智能除菌,3智能吸水,4系统设置
+}
+
+//动画设置{动画主体，主体动画时间，(返回动画时间，返回动画延时时间,若无需返回动画，则均设置为0），变化的范围值，动画回调函数（函数参数为void *与u32）支持双函数，不需要则填NULL}
+s32 yk_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay,s32 value_start_a,s32 value_end_a,void *anim_cb_a,s32 value_start_b,s32 value_end_b,void *anim_cb_b)
+{
+	grf_anim_set_t anim_set = {0};
+	anim_set.time = time;
+	anim_set.back_time = back_time;
+	anim_set.back_time_delay = back_time_delay;
+	anim_set.value_start_a = value_start_a;
+	anim_set.value_end_a = value_end_a;
+	anim_set.anim_cb_a = anim_cb_a;
+	anim_set.value_start_b = value_start_b;
+	anim_set.value_end_b = value_end_b;
+	anim_set.anim_cb_b = anim_cb_b;
+	grf_animation_set(ctrl,&anim_set);
 }
 
 //按键任务
 static void key_task01_cb(){
 	control_key_failure();
+	//丢掉太快的静音键
+	control_ytl_mute_v_away();
 
 	if (ytl_right)
 	{
 		ytl_right = GRF_FALSE;
-		grf_printf("ytl_right_task1 == %d\n",ytl_right);
+		//grf_printf("ytl_right_task1 == %d\n",ytl_right);
 
 		for(u8 i=0;i<4;i++)
 		{
 			grf_ctrl_t *obj=grf_ctrl_get_child(cont0,i);
-			grf_printf("grf_ctrl_get_x(%d)==%d\n",i,grf_ctrl_get_x(obj));
-			grf_printf("grf_ctrl_get_y(%d)==%d\n",i,grf_ctrl_get_y(obj));
+			//grf_printf("grf_ctrl_get_x(%d)==%d\n",i,grf_ctrl_get_x(obj));
+			//grf_printf("grf_ctrl_get_y(%d)==%d\n",i,grf_ctrl_get_y(obj));
 			if(grf_ctrl_get_x(obj)==mode_select_icon_x0)
-				grf_animation_set(obj,switch_speed,0,0,mode_select_icon_x0,mode_select_icon_x3,anim_img_pos,scale,scaling*scale,anim_img_zoom);
+				yk_animation_set(obj,switch_speed,0,0,mode_select_icon_x0,mode_select_icon_x3,anim_img_pos,scale,scaling*scale,anim_img_zoom);
 			if(grf_ctrl_get_x(obj)==mode_select_icon_x1)
-				grf_animation_set(obj,switch_speed,0,0,mode_select_icon_x1,mode_select_icon_x0,anim_img_pos,scaling*scale,scale,anim_img_zoom);
+				yk_animation_set(obj,switch_speed,0,0,mode_select_icon_x1,mode_select_icon_x0,anim_img_pos,scaling*scale,scale,anim_img_zoom);
 			if(grf_ctrl_get_x(obj)==mode_select_icon_x2)
-				grf_animation_set(obj,switch_speed,0,0,mode_select_icon_x2,mode_select_icon_x1,anim_img_pos,scaling*scale,scaling*scale,anim_img_zoom);
+				yk_animation_set(obj,switch_speed,0,0,mode_select_icon_x2,mode_select_icon_x1,anim_img_pos,scaling*scale,scaling*scale,anim_img_zoom);
 			if(grf_ctrl_get_x(obj)==mode_select_icon_x3)
-				grf_animation_set(obj,switch_speed,0,0,mode_select_icon_x3,mode_select_icon_x2,anim_img_pos,scaling*scale,scaling*scale,anim_img_zoom);
+				yk_animation_set(obj,switch_speed,0,0,mode_select_icon_x3,mode_select_icon_x2,anim_img_pos,scaling*scale,scaling*scale,anim_img_zoom);
 			grf_ctrl_update_location(obj);
 		}
 		grf_ctrl_update_location(cont0);
@@ -199,18 +217,18 @@ static void key_task01_cb(){
 			i = 1;
 		}
 		switch_highlight();
-		grf_printf("右键值i == %d\n",i);
+		//grf_printf("右键值i == %d\n",i);
 		grf_label_set_txt(label_name_ID1, select_mode_value_array[i-1]);  //1智能清扫,2智能除菌,3智能吸水,4系统设置
 
 	}
 	else if (ytl_back) {
 		ytl_back = GRF_FALSE;
-		grf_printf("ytl_back_task1 == %d",ytl_back);
+		//grf_printf("ytl_back_task1 == %d",ytl_back);
 		grf_view_set_dis_view(ytl_view_get_cur_id);
 	}
 	else if (ytl_confirmation) {
 		ytl_confirmation = GRF_FALSE;
-		grf_printf("确认值i: == %d\n",i);
+		//grf_printf("确认值i: == %d\n",i);
 		if (i == 1)
 		{
 			grf_view_set_dis_view(GRF_VIEW02_CLEANING_ID);  //智能清扫
@@ -228,16 +246,12 @@ static void key_task01_cb(){
 			grf_view_set_dis_view(GRF_VIEW17_SYSTEM_SETTING_ID);  //系统设置
 		}
 	}
-	else if (ytl_help) {
-		ytl_help = GRF_FALSE;
-		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);
-	}
 }
 
 
 void task_create01()
 {
-	grf_printf("task_create1--key_task1 == %p\n",key_task1);
+	//grf_printf("task_create1\n");
 
 	//获取控件
 	img0 = grf_ctrl_get_form_id(GRF_VIEW01_ID, VIEW01_IMAGE0_ID);
@@ -256,6 +270,6 @@ void task_create01()
 
 void task_del01(void)
 {
-	grf_printf("task_del01\n");
+	//grf_printf("task_del01\n");
 	grf_task_del(key_task1);
 }

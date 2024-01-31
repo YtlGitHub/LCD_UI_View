@@ -7,7 +7,7 @@ grf_task_t *maintenance_strategy_task = NULL;  //创建保养攻略任务
 
 
 //创建控件名
-grf_ctrl_t *maintenance_strategy_img_name_ID1 = NULL;  //保养攻略顺序蓝色图片控件名
+grf_ctrl_t *maintenance_strategy_img_name_ID1 = NULL;  //保养攻略顺序蓝色背景图控件名
 grf_ctrl_t *maintenance_strategy_label1_name_ID2 = NULL;  //保养攻略数字第几步控件名
 grf_ctrl_t *maintenance_strategy_label2_name_ID3 = NULL;  //保养攻略第几步说明文字显示控件名
 
@@ -29,7 +29,7 @@ grf_ctrl_t *maintenance_strategy_label_img_name_ID21 = NULL;  //保养攻略下�
 
 
 //自定义变量
-static u8 i = 0;  //控制循环播放轮播图
+static u16 i = 0;  //控制循环播放轮播图
 
 
 //自定义数组
@@ -113,7 +113,7 @@ static u8 *fault_image_name5[37] = {
 	"/fault/5_36.png"
 };
 //请清理滤网
-static u8 *clean_filter_image_name[24] = {
+static u8 *clean_filter_image_name[18] = {
 	"/help/help_2_00.png",
 	"/help/help_2_01.png",
 	"/help/help_2_02.png",
@@ -132,14 +132,28 @@ static u8 *clean_filter_image_name[24] = {
 	"/help/help_2_15.png",
 	"/help/help_2_16.png",
 	"/help/help_2_17.png",
-	"/help/help_2_18.png",
-	"/help/help_2_19.png",
-	"/help/help_2_20.png",
-	"/help/help_2_21.png",
-	"/help/help_2_22.png",
-	"/help/help_2_23.png",
 };
-//请清管道
+//晒干滤网
+static u8 *sun_filter_image_name[17] = {
+	"/help/help_2_17_0.png",
+	"/help/help_2_17_1.png",
+	"/help/help_2_17_2.png",
+	"/help/help_2_17_3.png",
+	"/help/help_2_17_4.png",
+	"/help/help_2_17_5.png",
+	"/help/help_2_17_6.png",
+	"/help/help_2_17_7.png",
+	"/help/help_2_17_8.png",
+	"/help/help_2_17_9.png",
+	"/help/help_2_17_10.png",
+	"/help/help_2_17_11.png",
+	"/help/help_2_17_12.png",
+	"/help/help_2_17_13.png",
+	"/help/help_2_17_14.png",
+	"/help/help_2_17_15.png",
+	"/help/help_2_17_16.png",
+};
+//请清理管道
 static u8 *clean_pipe_image_name[22] = {
 	"/help/help_2_30.png",
 	"/help/help_2_31.png",
@@ -166,7 +180,7 @@ static u8 *clean_pipe_image_name[22] = {
 };
 
 
-//清理滚刷,滚刷盖:回调函数
+//清理滚刷,滚刷盖
 static void clean_roller_brush_cover()
 {
 	if (i == 1)
@@ -182,7 +196,7 @@ static void clean_roller_brush_cover()
 	}
 	else if (i == 21)
 	{
-		//语音播报测试:"请分别取下滚刷盖和滚刷,用清水清洗后装回"
+		//语音播报:"请分别取下滚刷盖和滚刷,用清水清洗后装回"
 		switch_language_pack("14_01_help");
 		grf_ctrl_set_hidden(maintenance_strategy_img_name_ID1,GRF_TRUE);
 		grf_ctrl_set_hidden(container0_img_name_ID6,GRF_FALSE);
@@ -275,31 +289,35 @@ static void clean_roller_brush_cover()
 	{
 		grf_img_set_src(CTRB_RBC_img_name_ID13,fault_image_name3[i-35]);
 	}
-	else if (i == 69)
+	else if (i > 59 && i < 92)
+	{
+		grf_img_set_src(CTRB_RBC_img_name_ID13,fault_image_name3[i-58]);
+	}
+	//隐藏第一步容器
+	else if (i == 102)
 	{
 		grf_ctrl_set_hidden(container0_img_name_ID6,GRF_TRUE);
 		grf_ctrl_set_pos(CTRB_RBC_img_name_ID11,300,280);
 		grf_ctrl_set_pos(CTRB_RBC_img_name_ID12,455,325);
 		grf_ctrl_set_pos(CTRB_RBC_img_name_ID10,216,322);
 		grf_ctrl_set_pos(CTRB_RBC_img_name_ID9,230,350);
-		grf_delay(1000);
+		//grf_delay(1000);
 	}
 }
 
-
-//清理滤网及污水箱；调用函数
+//清理滤网及污水箱
 static void clean_filter_water_tank()
 {
 	//清理污水箱
-	if (i == 69) {
+	if (i == 102) {
 		grf_ctrl_set_hidden(maintenance_strategy_img_name_ID1,GRF_FALSE);
 		grf_label_set_txt(maintenance_strategy_label1_name_ID2, "2/3");
 		grf_label_set_txt(maintenance_strategy_label2_name_ID3, "#clean_the_filter_and_dirty_water_tank");
 
 		grf_ctrl_set_hidden(maintenance_strategy_label_img_name_ID21,GRF_TRUE);
 	}
-	else if (i == 89) {
-		//语音播报测试:"取下污水桶后再取下过滤器,分别清洗过滤器和污水桶,清洗完毕后,请将过滤器,污水桶依次装回"
+	else if (i == 122) {
+		//语音播报:"取下污水桶后再取下过滤器,分别清洗过滤器和污水桶,清洗完毕后,请将过滤器,污水桶依次装回"
 		switch_language_pack("14_02_help");
 		grf_ctrl_set_hidden(maintenance_strategy_img_name_ID1,GRF_TRUE);
 		grf_ctrl_set_hidden(container1_img_name_ID7,GRF_FALSE);
@@ -310,51 +328,56 @@ static void clean_filter_water_tank()
 		grf_ctrl_set_hidden(maintenance_strategy_label_img_name_ID21,GRF_FALSE);
 		grf_label_set_txt(maintenance_strategy_label_img_name_ID21, "#clean_the_filter_and_dirty_water_tank");
 	}
-	else if (i > 89  && i <= 123)
+	else if (i > 122  && i <= 156)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-88]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-121]);
 	}
-	else if (i > 123  && i <= 139)
+	else if (i > 156  && i <= 172)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-104]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-137]);
 	}
-	else if (i > 139  && i <= 155)
+	else if (i > 172  && i <= 188)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-120]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[i-153]);
 	}
-	else if (i > 155  && i <= 167)
+	else if (i > 188  && i <= 200)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[176-i]);
-	}
-	else if (i == 168) {
-		grf_delay(1000);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,fault_image_name5[209-i]);
 	}
 
 	//清理滤网
-	else if (i == 169)
+	else if (i == 212)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[i-168]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[i-211]); //212-211=1
 		grf_ctrl_set_pos(clean_the_filter_and_dirty_water_tank_img_name_ID15,260,85);
 	}
-	else if (i > 169 && i <= 191)
+	//取出滤网并清洗
+	else if (i > 212 && i <= 228)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[i-168]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[i-211]);  //228-211=17
 	}
-	else if (i == 192)
+	//太阳晒干滤网
+	else if (i > 228 && i <= 244)
 	{
-		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[1]);
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,sun_filter_image_name[i-228]);  //229-228=1 244-228=16
 	}
-	else if (i == 193)
+	//滤网原路装回
+	else if (i > 244 && i <= 251)
+	{
+		grf_img_set_src(clean_the_filter_and_dirty_water_tank_img_name_ID15,clean_filter_image_name[252-i]);  //252-245=7 252-251=1
+	}
+	//隐藏第二步容器
+	else if (i == 262)
 	{
 		grf_ctrl_set_hidden(container1_img_name_ID7,GRF_TRUE);
-		grf_delay(1000);
+		//grf_delay(1000);
 	}
 }
 
 //清理管道
 static void clean_pipe()
 {
-	if (i == 193)
+	if (i == 262)
 	{
 		grf_ctrl_set_hidden(maintenance_strategy_img_name_ID1,GRF_FALSE);
 		grf_label_set_txt(maintenance_strategy_label1_name_ID2, "3/3");
@@ -362,31 +385,34 @@ static void clean_pipe()
 
 		grf_ctrl_set_hidden(maintenance_strategy_label_img_name_ID21,GRF_TRUE);
 	}
-	else if (i == 214) {
-		//语音播报测试:"取下污水桶,用清洁刷清洁管道"
+	else if (i == 283) {
+		//语音播报:"取下污水桶,用清洁刷清洁管道"
 		switch_language_pack("14_03_help");
 		grf_ctrl_set_hidden(maintenance_strategy_img_name_ID1,GRF_TRUE);
 		grf_ctrl_set_hidden(container2_img_name_ID17,GRF_FALSE);
-		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-213]);
+		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-282]);
 
 		//清理管道
 		grf_ctrl_set_hidden(maintenance_strategy_label_img_name_ID21,GRF_FALSE);
 		grf_label_set_txt(maintenance_strategy_label_img_name_ID21, "#clean_the_pipe");
 	}
-	else if (i > 214 && i <= 234) {
-		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-213]);
+	else if (i > 283 && i <= 303) {
+		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-282]);
 	}
-	else if (i == 250) {
-		//grf_delay(1000);
+	else if (i > 303 && i <= 323) {
+		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-302]);
+	}
+	else if (i > 323 && i <= 343) {
+		grf_img_set_src(clean_the_pipe_img_name_ID18,clean_pipe_image_name[i-322]);
 	}
 }
 
 //保养攻略
 void maintenance_strategy_task_cb()
 {
+	control_ytl_mute_v_away();  //快速按静音键时,控制太快的按键丢掉
 	i++;
-	grf_printf("保养攻略：i == %d\n",i);
-	if(i > 250)
+	if(i > 345)
 	{
 		i = 1;
 	}
@@ -401,14 +427,13 @@ void key_task14_cb()
 	if (ytl_back)
 	{
 		ytl_back = GRF_FALSE;
-		grf_printf("返回键\n");
 		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);  //返回帮助界面
 	}
 }
 
 void task_create14()
 {
-	grf_printf("task_create14\n");
+	//grf_printf("task_create14\n");
 
 	//获取控件
 	maintenance_strategy_img_name_ID1 = grf_ctrl_get_form_id(GRF_VIEW14_HELP2_ID,VIEW14_HELP2_IMAGE0_ID);
@@ -441,7 +466,7 @@ void task_create14()
 
 void task_del14()
 {
-	grf_printf("task_del14\n");
+	//grf_printf("task_del14\n");
 	i = 0;
 	grf_task_del(key_task14);
 	grf_task_del(maintenance_strategy_task);

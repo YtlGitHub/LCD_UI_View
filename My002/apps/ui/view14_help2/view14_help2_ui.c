@@ -118,6 +118,8 @@ void view14_help2_init(void)
 
 void view14_help2_entry(void)
 {
+	//key_sound_tr660r_wavplay("dongPart002");  //按键音效
+	key_sound_tr660r_wavplay("du");  //按键音效
 	task_create14();
 }
 

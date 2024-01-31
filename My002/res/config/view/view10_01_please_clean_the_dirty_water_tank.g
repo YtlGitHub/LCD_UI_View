@@ -31,12 +31,12 @@
         "name" : "label0",
         "id" : 2,
         "pt" : {
-          "x" : 200,
-          "y" : 530
+          "x" : 150,
+          "y" : 520
         },
         "size" : {
-          "width" : 400,
-          "height" : 70
+          "width" : 500,
+          "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255

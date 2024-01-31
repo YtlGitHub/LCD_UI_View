@@ -69,7 +69,7 @@ void please_clean_the_dirty_water_tank_task_cb()
 	{
 		i++;
 		if (i == 1) {
-			grf_printf("语言播报：请清理污水箱，避免异味\n");
+			//grf_printf("语言播报：请清理污水箱，避免异味\n");
 		}
 		else if (i > 0 && i <= 35)
 		{
@@ -100,14 +100,14 @@ void please_clean_the_dirty_water_tank_task_cb()
 void key_task10_01_cb(){
 	if (ytl_self_cleaning) {
 		ytl_self_cleaning = GRF_FALSE;
-		grf_printf("重新再次自清洁\n");
+		//grf_printf("重新再次自清洁\n");
 		grf_view_set_dis_view(GRF_VIEW09_SELF_CLEANING_MODE_ID);  //重新再次自清洁
 	}
 }
 
 void task_create10_01()
 {
-	grf_printf("task_create10_01\n");
+	//grf_printf("task_create10_01\n");
 
 	//获取控件
 	please_clean_the_dirty_water_tank_name_ID1 = grf_ctrl_get_form_id(GRF_VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_ID,VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_IMAGE0_ID);
@@ -124,7 +124,7 @@ void task_create10_01()
 
 void task_del10_01()
 {
-	grf_printf("task_del10\n");
+	//grf_printf("task_del10\n");
 	grf_task_del(key_task10_01);
 	grf_task_del(please_clean_the_dirty_water_tank_task);
 }

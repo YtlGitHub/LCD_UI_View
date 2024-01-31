@@ -10,6 +10,16 @@ static void image1_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
 }
+
+static void image2_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view03_voice_icon_cc.h"
 void view03_voice_icon_init(void)
 {

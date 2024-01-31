@@ -50,5 +50,8 @@ typedef enum {
 void view13_help1_init(void);
 void view13_help1_entry(void);
 void view13_help1_exit(void);
+//.c文件里面自定义函数
+void task_create13();
+void task_del13();
 
 #endif

@@ -259,6 +259,27 @@
   }, {
     "childImageId" : 5,
     "childImagePath" : "icon/logo.png"
+  }, {
+    "childImageId" : 7,
+    "childImagePath" : "icon/logo01.png"
+  }, {
+    "childImageId" : 8,
+    "childImagePath" : "icon/volume0.png"
+  }, {
+    "childImageId" : 9,
+    "childImagePath" : "icon/volume1.png"
+  }, {
+    "childImageId" : 10,
+    "childImagePath" : "icon/volume2.png"
+  }, {
+    "childImageId" : 11,
+    "childImagePath" : "icon/volume3.png"
+  }, {
+    "childImageId" : 12,
+    "childImagePath" : "icon/logo01.jpg"
+  }, {
+    "childImageId" : 14,
+    "childImagePath" : "icon/04_degree_fouling1.png"
   } ]
 }, {
   "imageId" : 5,
@@ -389,6 +410,15 @@
   }, {
     "childImageId" : 42,
     "childImagePath" : "self_cleaning/5_01.png"
+  }, {
+    "childImageId" : 43,
+    "childImagePath" : "self_cleaning/3_10.png"
+  }, {
+    "childImageId" : 44,
+    "childImagePath" : "self_cleaning/3_11.png"
+  }, {
+    "childImageId" : 45,
+    "childImagePath" : "self_cleaning/3_12.png"
   } ]
 }, {
   "imageId" : 6,

@@ -29,7 +29,7 @@ void view06_sterilization_entry(void)
 	//发送串口数据
 	grf_reg_com_send(0x05, 0xA0, 0x02, 0x02, 0x00);
 	//语音播报:除菌也已制备完成,请开始清洁
-	switch_language_pack("05_02__sterilization_fluid_preparation_100%");
+	switch_language_pack("05_02_sterilization_fluid_preparation_100%");
 }
 
 void view06_sterilization_exit(void)

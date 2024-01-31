@@ -40,12 +40,14 @@ static u8 *remove_handle_image_name[19] = {
 
 //拆除手柄轮播图函数
 void remove_handle_task_cb(){
+	control_ytl_mute_v_away();  //快速按静音键时,控制太快的按键丢掉
 	i++;
-	if (i > 18) {
-		i = 1;
-		grf_delay(1000);
+	if (i <= 18) {
+		grf_img_set_src(remove_handle_img_name_ID2,remove_handle_image_name[i]);
 	}
-	grf_img_set_src(remove_handle_img_name_ID2,remove_handle_image_name[i]);
+	else if (i == 28) {
+		i = 0;
+	}
 }
 
 //按键操作
@@ -53,14 +55,13 @@ void key_task15_cb(){
 	if (ytl_back)
 	{
 		ytl_back = GRF_FALSE;
-		grf_printf("返回键\n");
 		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);  //返回帮助界面
 	}
 }
 
 void task_create15()
 {
-	grf_printf("task_create15\n");
+	//grf_printf("task_create15\n");
 
 	//获取任务
 	remove_handle_img_name_ID2 = grf_ctrl_get_form_id(GRF_VIEW15_HELP3_ID,VIEW15_HELP3_IMAGE1_ID);
@@ -75,7 +76,7 @@ void task_create15()
 
 void task_del15()
 {
-	grf_printf("task_del15\n");
+	//grf_printf("task_del15\n");
 	i = 0;
 	grf_task_del(key_task15);
 	grf_task_del(remove_handle_task);

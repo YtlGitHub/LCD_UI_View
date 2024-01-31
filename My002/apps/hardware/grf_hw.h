@@ -10,6 +10,7 @@
 
 //以下.h自动添加
 #include "uart/grf_hw_uart.h"
+#include "wdt/grf_hw_wdt.h"
 
 
 

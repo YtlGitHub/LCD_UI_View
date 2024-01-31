@@ -2,7 +2,7 @@
 
 
 //创建任务名
-grf_task_t *key_task19 = NULL;  //按键任务
+//grf_task_t *key_task19 = NULL;  //按键任务
 
 
 //创建控件名

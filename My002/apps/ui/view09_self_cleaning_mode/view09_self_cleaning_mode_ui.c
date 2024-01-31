@@ -104,6 +104,7 @@ void view09_self_cleaning_mode_init(void)
 void view09_self_cleaning_mode_entry(void)
 {
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
+	grf_view_set_dis_view(GRF_VIEW03_VOICE_ICON_ID);
 	task_create09();
 	//发送串口数据,写在.c文件里
 	//grf_reg_com_send(0x04, 0xB0, 0x00, 0x00, 0x00);

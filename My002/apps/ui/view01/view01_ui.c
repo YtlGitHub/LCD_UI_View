@@ -53,14 +53,11 @@ void view01_init(void)
 
 void view01_entry(void)
 {
-	grf_printf("view01_entry\n");
-	//system("/usr/bin/aplay /mnt/app/grf_app/res/sound/1.wav &");
 	task_create01();
 }
 
 
 void view01_exit(void)
 {
-	grf_printf("view01_exit\n");
 	task_del01();
 }

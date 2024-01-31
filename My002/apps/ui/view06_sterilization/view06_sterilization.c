@@ -34,15 +34,15 @@ void sterilization_image_task_cb()
 {
 	if (isCmdCompletedBuf[6]) {
 		if (ytl_erected) {
-			grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
 			if (ytl_dirty_degree <= 2 && ytl_dirty_degree >= 0)
 			{
-				grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
+				//grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
 				grf_img_set_src(sterilization_image2, image_name_sterilization[i]);
 			}
 			else if(ytl_dirty_degree <= 4 && ytl_dirty_degree > 2)
 			{
-				grf_printf("i++ == %d,橘色显示\n", i);
+				//grf_printf("i++ == %d,橘色显示\n", i);
 				grf_img_set_src(sterilization_image2, image_name_sterilization[i+6]);
 			}
 			i++;
@@ -53,7 +53,7 @@ void sterilization_image_task_cb()
 		}
 		else
 		{
-			grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
 			grf_img_set_src(sterilization_image2, image_name_sterilization[i]);
 			isCmdCompletedBuf[6] = GRF_FALSE;
 		}
@@ -74,13 +74,6 @@ void key_task06_cb(){
 
 void task_create06()
 {
-//	ytl_erected = GRF_TRUE;  //是否竖起，0竖起，1倾斜
-//	ytl_battery_quantity_val = 20;  //电量信息值
-//	ytl_dirty_degree = 2;
-//	isCmdCompletedBuf[6] = GRF_TRUE;
-//	isCmdCompletedBuf[4] = GRF_TRUE;
-	grf_printf("task_create6 %p\n",key_task06);
-
 	//获取控件
 	sterilization_image2 = grf_ctrl_get_form_id(GRF_VIEW06_STERILIZATION_ID, VIEW06_STERILIZATION_IMAGE0_ID);
 

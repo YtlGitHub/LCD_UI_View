@@ -79,6 +79,8 @@ void view17_system_setting_init(void)
 
 void view17_system_setting_entry(void)
 {
+	//key_sound_tr660r_wavplay("dongPart002");  //按键音效
+	key_sound_tr660r_wavplay("du");  //按键音效
 	task_create17();
 }
 

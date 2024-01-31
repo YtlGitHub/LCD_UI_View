@@ -1,11 +1,6 @@
 #include "../../apps.h"
 
 
-//.c文件里面自定义函数
-void task_create13();
-void task_del13();
-
-
 static void container0_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	

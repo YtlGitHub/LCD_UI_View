@@ -113,8 +113,8 @@ void sterilization_fluid_preparation_digit_task_cd()
 		grf_ctrl_update_location(obj3);
 		grf_ctrl_update_location(obj4);
 		//动画个位向上滑动
-		grf_animation_set(obj3,switch_speed,0,0,above_y,-under_y,anim_img_pos,0,0,NULL);
-		grf_animation_set(obj4,switch_speed,0,0,under_y,above_y,anim_img_pos,0,0,NULL);
+		yk_animation_set(obj3,switch_speed,0,0,above_y,-under_y,anim_img_pos,0,0,NULL);
+		yk_animation_set(obj4,switch_speed,0,0,under_y,above_y,anim_img_pos,0,0,NULL);
 	}
 	//十位向上滑动
 	if (k == 10 || k == 20 || k == 30 || k == 40 || k == 50 || k == 60 || k == 70 || k == 80 || k == 90 || k == 100)
@@ -125,7 +125,7 @@ void sterilization_fluid_preparation_digit_task_cd()
 			grf_img_set_src(obj2,image_digit[0]);
 			grf_ctrl_set_pos(obj2,unit_x,under_y);
 			//动画百位向上滑动
-			grf_animation_set(obj0,switch_speed,0,0,under_y,above_y,anim_img_pos2,0,0,NULL);
+			yk_animation_set(obj0,switch_speed,0,0,under_y,above_y,anim_img_pos2,0,0,NULL);
 		}
 		else {
 			grf_img_set_src(obj1,image_digit[k/10-1]);
@@ -137,8 +137,8 @@ void sterilization_fluid_preparation_digit_task_cd()
 		grf_ctrl_update_location(obj1);
 		grf_ctrl_update_location(obj2);
 		//动画十位向上滑动
-		grf_animation_set(obj1,switch_speed,0,0,above_y,-under_y,anim_img_pos1,0,0,NULL);
-		grf_animation_set(obj2,switch_speed,0,0,under_y,above_y,anim_img_pos1,0,0,NULL);
+		yk_animation_set(obj1,switch_speed,0,0,above_y,-under_y,anim_img_pos1,0,0,NULL);
+		yk_animation_set(obj2,switch_speed,0,0,under_y,above_y,anim_img_pos1,0,0,NULL);
 	}
 	//除菌夜制备完成,跳转下一个对应界面
 	if (k > 101)
@@ -158,7 +158,7 @@ void sterilization_fluid_preparation_digit_task_cd()
 	if (j > 9) {
 		j = 0;
 	}
-	grf_printf("j,k =******************************************************= %d %d\n",j,k);
+	//grf_printf("j,k =******************************************************= %d %d\n",j,k);
 }
 
 
@@ -204,7 +204,7 @@ void key_task05_cb(){
 
 void task_create05()
 {
-	grf_printf("task_create05\n");
+	//grf_printf("task_create05\n");
 
 
 	//获取控件
@@ -236,7 +236,7 @@ void task_create05()
 
 void task_del05()
 {
-	grf_printf("task_del05\n");
+	//grf_printf("task_del05\n");
 	grf_task_del(key_task05);
 	grf_task_del(sterilization_fluid_preparation_digit_task);
 	grf_task_del(sterilization_fluid_preparation_task);

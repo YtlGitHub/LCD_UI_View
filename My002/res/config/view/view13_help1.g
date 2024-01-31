@@ -139,6 +139,7 @@
           "height" : 640
         },
         "scrollbar_t" : { },
+        "hidden" : true,
         "alpha" : 255
       },
       "styles" : [ {
@@ -303,12 +304,12 @@
         "id" : 3,
         "parent_id" : 2,
         "pt" : {
-          "x" : 40,
-          "y" : 220
+          "x" : 4,
+          "y" : 210
         },
         "size" : {
-          "width" : 321,
-          "height" : 100
+          "width" : 426,
+          "height" : 111
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -364,17 +365,16 @@
         "id" : 6,
         "parent_id" : 5,
         "pt" : {
-          "x" : 30,
+          "x" : 10,
           "y" : 425
         },
         "size" : {
-          "width" : 341,
-          "height" : 50
+          "width" : 390,
+          "height" : 56
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
-      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
       "txt" : "#select_button",
@@ -430,7 +430,7 @@
           "y" : 460
         },
         "size" : {
-          "width" : 366,
+          "width" : 410,
           "height" : 50
         },
         "scrollbar_t" : { },
@@ -487,12 +487,12 @@
         "id" : 12,
         "parent_id" : 11,
         "pt" : {
-          "x" : 40,
-          "y" : 220
+          "x" : 9,
+          "y" : 210
         },
         "size" : {
-          "width" : 305,
-          "height" : 100
+          "width" : 390,
+          "height" : 111
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -569,11 +569,11 @@
         "id" : 16,
         "parent_id" : 14,
         "pt" : {
-          "x" : 220,
+          "x" : 135,
           "y" : 525
         },
         "size" : {
-          "width" : 360,
+          "width" : 536,
           "height" : 67
         },
         "scrollbar_t" : { },
@@ -723,7 +723,7 @@
         "id" : 43,
         "parent_id" : 18,
         "pt" : {
-          "x" : 60,
+          "x" : 65,
           "y" : 450
         },
         "size" : {
@@ -755,11 +755,11 @@
         "id" : 44,
         "parent_id" : 18,
         "pt" : {
-          "x" : 590,
+          "x" : 564,
           "y" : 450
         },
         "size" : {
-          "width" : 161,
+          "width" : 212,
           "height" : 56
         },
         "scrollbar_t" : { },
@@ -856,11 +856,11 @@
         "id" : 23,
         "parent_id" : 21,
         "pt" : {
-          "x" : 250,
+          "x" : 245,
           "y" : 545
         },
         "size" : {
-          "width" : 90,
+          "width" : 95,
           "height" : 50
         },
         "scrollbar_t" : { },
@@ -945,7 +945,7 @@
           "y" : 400
         },
         "size" : {
-          "width" : 500,
+          "width" : 466,
           "height" : 50
         },
         "scrollbar_t" : { },
@@ -1002,17 +1002,16 @@
         "id" : 34,
         "parent_id" : 33,
         "pt" : {
-          "x" : 170,
+          "x" : 165,
           "y" : 350
         },
         "size" : {
-          "width" : 305,
+          "width" : 326,
           "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
-      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
       "txt" : "#mute_button",
@@ -1064,12 +1063,12 @@
         "id" : 37,
         "parent_id" : 36,
         "pt" : {
-          "x" : 30,
-          "y" : 300
+          "x" : 29,
+          "y" : 189
         },
         "size" : {
           "width" : 370,
-          "height" : 100
+          "height" : 401
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -1117,11 +1116,11 @@
         "parent_id" : 39,
         "pt" : {
           "x" : 30,
-          "y" : 250
+          "y" : 190
         },
         "size" : {
           "width" : 370,
-          "height" : 100
+          "height" : 401
         },
         "scrollbar_t" : { },
         "alpha" : 255

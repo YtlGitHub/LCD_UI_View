@@ -54,11 +54,11 @@
         "name" : "label0",
         "id" : 3,
         "pt" : {
-          "x" : 340,
-          "y" : 545
+          "x" : 300,
+          "y" : 515
         },
         "size" : {
-          "width" : 216,
+          "width" : 300,
           "height" : 50
         },
         "scrollbar_t" : { },
@@ -66,7 +66,7 @@
       },
       "dis_mode_e" : 3,
       "animspeed" : 50,
-      "align_e" : 2,
+      "align_e" : 1,
       "txt" : "#quick_guide",
       "styles" : [ {
         "name" : "style",
@@ -85,21 +85,30 @@
         "name" : "label1",
         "id" : 4,
         "pt" : {
-          "x" : 250,
-          "y" : 545
+          "x" : 200,
+          "y" : 525
         },
         "size" : {
-          "width" : 90,
+          "width" : 100,
           "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
       "animspeed" : 50,
-      "align_e" : 2,
+      "align_e" : 3,
       "txt" : "1/4",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 33023,
           "font_lib" : "1.ttf",
@@ -138,6 +147,6 @@
     "v_name" : "view12_help",
     "v_id" : 13,
     "bg_color" : 4294967295,
-    "bg_image" : "\\background\\Smart_background.png"
+    "bg_image" : "/background/home_menu_basebg00.png"
   }
 }

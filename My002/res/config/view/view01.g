@@ -34,12 +34,12 @@
         "name" : "label3",
         "id" : 5,
         "pt" : {
-          "x" : 250,
+          "x" : 220,
           "y" : 50
         },
         "size" : {
-          "width" : 119,
-          "height" : 41
+          "width" : 160,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -50,6 +50,15 @@
       "txt" : "#press",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -67,7 +76,7 @@
         "id" : 6,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 374,
+          "x" : 384,
           "y" : 50
         },
         "size" : {
@@ -88,12 +97,12 @@
         "name" : "label4",
         "id" : 7,
         "pt" : {
-          "x" : 420,
+          "x" : 430,
           "y" : 50
         },
         "size" : {
-          "width" : 111,
-          "height" : 41
+          "width" : 160,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -104,6 +113,15 @@
       "txt" : "#enter",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -119,12 +137,12 @@
         "name" : "label0",
         "id" : 1,
         "pt" : {
-          "x" : 135,
-          "y" : 525
+          "x" : 150,
+          "y" : 520
         },
         "size" : {
-          "width" : 536,
-          "height" : 67
+          "width" : 500,
+          "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -135,6 +153,15 @@
       "txt" : "#smart_cleaning",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -245,6 +272,6 @@
     "v_name" : "view01",
     "v_id" : 1,
     "bg_color" : 4294967295,
-    "bg_image" : "\\background\\home_menu_basebg00.png"
+    "bg_image" : "/background/home_menu_basebg00.png"
   }
 }

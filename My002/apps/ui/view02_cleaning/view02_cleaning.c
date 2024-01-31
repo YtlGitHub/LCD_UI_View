@@ -4,6 +4,7 @@
 //创建任务名
 static grf_task_t *qingsao_task = NULL;
 static grf_task_t *key_task02 = NULL;
+static grf_task_t *voice_broadcast_task = NULL;  //创建语音播报任务
 
 
 //创建控件名
@@ -12,6 +13,7 @@ static grf_ctrl_t* qingsao_image2 = NULL;
 
 //自定义变量
 static u8 i = 1;  //清扫里面动图
+static u8 voice_broadcast_var = 0;  //语音播报记时变量
 
 
 //自定义数组
@@ -30,20 +32,34 @@ static u8 *image_name_cleaning[EXTERNAL_BUFFER_SIZE] = {
 };  //中间清扫动图文件名保存到数组里面
 
 
+static void voice_broadcast_task_cb()
+{
+#if RTOS_EXECUTEBUFF
+	if(tr660r_wav_get_play_state() == 0)
+	{
+		switch_language_pack("02_smart_clean");
+		grf_task_del(voice_broadcast_task);
+		voice_broadcast_task = NULL;
+	}
+#endif
+}
+
+
 //清扫动图
 static void Intelligent_intermediate_image_task_cb()
 {
-	if (isCmdCompletedBuf[2]) {
-		grf_printf("Intelligent_intermediate_image_task_cb.ytl_erected == %d\n", ytl_erected);
+	if (isCmdCompletedBuf[2])
+	{
+		//grf_printf("Intelligent_intermediate_image_task_cb.ytl_erected == %d\n", ytl_erected);
 		if (ytl_erected) {
-			grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,倾斜状态\n", ytl_erected);
 			if (ytl_dirty_degree <= 2 && ytl_dirty_degree >= 0) {
-				grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
+				//grf_printf("i++ == %d,蓝色显示倾斜状态\n", i);
 				grf_img_set_src(qingsao_image2, image_name_cleaning[i]);
 
 			}
 			else if(ytl_dirty_degree <= 4 && ytl_dirty_degree > 2){
-				grf_printf("i++ == %d,橘色显示\n", i+5);
+				//grf_printf("i++ == %d,橘色显示\n", i+5);
 				grf_img_set_src(qingsao_image2, image_name_cleaning[i+5]);
 			}
 			i++;
@@ -52,7 +68,7 @@ static void Intelligent_intermediate_image_task_cb()
 			}
 		}
 		else {
-			grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
+			//grf_printf("ytl_erected == %d,竖起状态\n", ytl_erected);
 			grf_img_set_src(qingsao_image2, image_name_cleaning[i]);
 			isCmdCompletedBuf[2] = GRF_FALSE;
 		}
@@ -64,21 +80,39 @@ static void Intelligent_intermediate_image_task_cb()
 //按键操作
 static void key_task02_cb(){
 	if (ytl_right) {
-		grf_printf("ytl_right == %d",ytl_right);
-		grf_view_set_dis_view(GRF_VIEW01_ID);
 		ytl_right = GRF_FALSE;
+		if (voice_broadcast_task)
+		{
+			grf_task_del(voice_broadcast_task);
+			voice_broadcast_task = NULL;
+		}
+		grf_view_set_dis_view(GRF_VIEW01_ID);
 	}
 }
 
 
 void task_create02()
 {
-	grf_printf("task_create2\n");
-//	ytl_erected = GRF_TRUE;  //是否竖起，0竖起，1倾斜
-//	ytl_battery_quantity_val = 20;  //电量信息值
-//	ytl_dirty_degree = 1;
-//	isCmdCompletedBuf[2] = GRF_TRUE;
-//	isCmdCompletedBuf[4] = GRF_TRUE;
+	//grf_printf("task_create2\n");
+
+	if (ytl3_switch_language == 3)
+	{
+		if (ytl_view_get_cur_id == GRF_VIEW20_LOGO_ID)
+		{
+			//创建语音播报任务
+			voice_broadcast_task = grf_task_create(voice_broadcast_task_cb,100,NULL);  //创建按键任务
+		}
+		else
+		{
+			switch_language_pack("02_smart_clean");
+		}
+		ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
+	}
+	else
+	{
+		ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
+		switch_language_pack("02_smart_clean");
+	}
 
 	//获取控件
 	qingsao_image2 = grf_ctrl_get_form_id(GRF_VIEW02_CLEANING_ID, VIEW02_CLEANING_IMAGE0_ID);
@@ -94,7 +128,7 @@ void task_create02()
 
 void task_del02()
 {
-	grf_printf("task_del02\n");
+	//grf_printf("task_del02\n");
 	grf_task_del(key_task02);
 	grf_task_del(qingsao_task);
 

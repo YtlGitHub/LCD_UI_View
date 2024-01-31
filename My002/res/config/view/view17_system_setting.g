@@ -34,21 +34,31 @@
         "name" : "label0",
         "id" : 6,
         "pt" : {
-          "x" : 135,
-          "y" : 525
+          "x" : 150,
+          "y" : 520
         },
         "size" : {
-          "width" : 536,
-          "height" : 67
+          "width" : 500,
+          "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
+      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
-      "txt" : "智能清扫",
+      "txt" : "#roller_brush_lighting",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -64,12 +74,12 @@
         "name" : "label1",
         "id" : 7,
         "pt" : {
-          "x" : 250,
+          "x" : 210,
           "y" : 50
         },
         "size" : {
-          "width" : 119,
-          "height" : 41
+          "width" : 160,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -80,6 +90,15 @@
       "txt" : "#press",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -122,8 +141,8 @@
           "y" : 50
         },
         "size" : {
-          "width" : 136,
-          "height" : 41
+          "width" : 212,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -134,6 +153,15 @@
       "txt" : "#adjust",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -147,13 +175,11 @@
     "type" : 19,
     "property" : {
       "pub_t" : {
-        "name" : "image0",
-        "id" : 2,
+        "name" : "image2",
+        "id" : 4,
         "parent_id" : 1,
         "ctrl_type" : 19,
-        "pt" : {
-          "x" : 200
-        },
+        "pt" : { },
         "size" : {
           "width" : 400,
           "height" : 400
@@ -161,7 +187,7 @@
         "scrollbar_t" : { },
         "alpha" : 255
       },
-      "init_img" : "/system_setting/1_1_off.png",
+      "init_img" : "/system_setting/3_2_1.png",
       "rotate_pt" : {
         "x" : 200,
         "y" : 350
@@ -199,12 +225,12 @@
     "type" : 19,
     "property" : {
       "pub_t" : {
-        "name" : "image2",
-        "id" : 4,
+        "name" : "image0",
+        "id" : 2,
         "parent_id" : 1,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 201
+          "x" : 200
         },
         "size" : {
           "width" : 400,
@@ -213,31 +239,7 @@
         "scrollbar_t" : { },
         "alpha" : 255
       },
-      "init_img" : "/system_setting/3_2_1.png",
-      "rotate_pt" : {
-        "x" : 200,
-        "y" : 350
-      }
-    }
-  }, {
-    "CLASSNAME" : "image",
-    "theme" : "youth",
-    "type" : 19,
-    "property" : {
-      "pub_t" : {
-        "name" : "image3",
-        "id" : 5,
-        "parent_id" : 1,
-        "ctrl_type" : 19,
-        "pt" : { },
-        "size" : {
-          "width" : 400,
-          "height" : 400
-        },
-        "scrollbar_t" : { },
-        "alpha" : 255
-      },
-      "init_img" : "/system_setting/4_2.png",
+      "init_img" : "/system_setting/1_1_off.png",
       "rotate_pt" : {
         "x" : 200,
         "y" : 350
@@ -248,25 +250,35 @@
     "theme" : "youth",
     "property" : {
       "pub_t" : {
-        "name" : "label3",
-        "id" : 10,
-        "parent_id" : 2,
+        "name" : "label5",
+        "id" : 12,
+        "parent_id" : 4,
         "pt" : {
           "x" : 90,
-          "y" : 242
+          "y" : 268
         },
         "size" : {
-          "width" : 212,
+          "width" : 216,
           "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
+      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
-      "txt" : "#off",
+      "txt" : "#low",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -287,17 +299,27 @@
           "y" : 245
         },
         "size" : {
-          "width" : 212,
+          "width" : 216,
           "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
+      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
       "txt" : "#water",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -310,60 +332,39 @@
     "theme" : "youth",
     "property" : {
       "pub_t" : {
-        "name" : "label5",
-        "id" : 12,
-        "parent_id" : 4,
+        "name" : "label3",
+        "id" : 10,
+        "parent_id" : 2,
         "pt" : {
           "x" : 90,
-          "y" : 268
+          "y" : 242
         },
         "size" : {
-          "width" : 212,
+          "width" : 216,
           "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
+      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 2,
-      "txt" : "#low",
+      "txt" : "#off",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
           "font_size" : 50
-        }
-      } ]
-    }
-  }, {
-    "CLASSNAME" : "label",
-    "theme" : "youth",
-    "property" : {
-      "pub_t" : {
-        "name" : "label6",
-        "id" : 13,
-        "parent_id" : 5,
-        "pt" : {
-          "x" : 90,
-          "y" : 266
-        },
-        "size" : {
-          "width" : 212,
-          "height" : 50
-        },
-        "scrollbar_t" : { },
-        "alpha" : 255
-      },
-      "animspeed" : 50,
-      "align_e" : 2,
-      "txt" : "#language",
-      "styles" : [ {
-        "name" : "style",
-        "txt_t" : {
-          "color" : 16777215,
-          "font_lib" : "1.ttf",
-          "font_size" : 45
         }
       } ]
     }

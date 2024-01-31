@@ -16,6 +16,7 @@ grf_ctrl_t *label_battery_name_ID7 = NULL;  //电量图标
 
 //自定义变量
 static u8 i = 0;  //控制背景红黄绿圆圈动图显示变量
+static u16 j = 0;  //控制息屏
 static grf_bool label_name_ID6_bool = GRF_FALSE;  //控制低电量文本提示是否循环跑动
 static u8 label_name_ID6_var = 0;  //控制低电量文本提示等多久之后消失
 
@@ -87,6 +88,7 @@ static u8 label_battery_name_ID7_variable[1];  //电量消息值
 //背景红橙绿动图显示
 void background_red_yellow_green_task_cb()
 {
+	control_ytl_mute_v_away();  //快速按静音键时,控制太快的按键丢掉
 	if (isCmdCompletedBuf[8])
 	{
 		i++;
@@ -135,7 +137,43 @@ void background_red_yellow_green_task_cb()
 			isCmdCompletedBuf[8] = GRF_FALSE;
 		}
 	}
-
+	//暗屏倒计时1分钟
+	if(j <= 600)  //1minx60s = 60s x 1000ms = 60000ms / 100 = 600
+	{
+		if (j>550)
+		{
+			grf_disp_set_bright(650-j);
+		}
+		j++;
+	}
+	//电量满了100等4分钟就自动息屏 4minx60s = 240s x 1000ms = 240000ms / 100 = 2400
+	if(ytl_battery_quantity_val == 100)
+	{
+		if (j > 600 && j <= 2400)
+		{
+			/*
+			if(j >= 2351 && j <= 2400)
+			{
+				grf_disp_set_bright(2400-j);
+			}
+			*/
+			if(j >= 2351 && j <= 2390)
+			{
+				grf_disp_set_bright(2400-j);
+			}
+			else if (j == 2400) {
+				grf_disp_set_bright(0);
+			}
+			j++;
+		}
+	}
+	//如果在充电界面且息屏状态，按任意键，背光亮起
+	if (isCmdCompletedBuf[88])
+	{
+		isCmdCompletedBuf[88] = GRF_FALSE;
+		grf_disp_set_bright(100);
+		j = 0;
+	}
 }
 
 //按键操作
@@ -152,12 +190,12 @@ void key_task08_cb(){
 
 	if (ytl_self_cleaning) {
 		ytl_self_cleaning = GRF_FALSE;
-		if (ytl_battery_quantity_val > 20  && ytl_battery_quantity_val <= 100) {
+		if (ytl_battery_quantity_val >= 20  && ytl_battery_quantity_val <= 100) {
 			grf_view_set_dis_view(GRF_VIEW09_SELF_CLEANING_MODE_ID);
 		}
 		else {
 			//语音播报:"当前电量过低,请稍后自清洁。"
-			switch_language_pack("08_01");
+			switch_language_pack("08_01_Please_clean_yourself_later");
 			grf_ctrl_set_hidden(label_name_ID6,GRF_FALSE);
 			label_name_ID6_bool = GRF_TRUE;
 		}
@@ -167,7 +205,7 @@ void key_task08_cb(){
 
 void task_create08()
 {
-	grf_printf("task_create8\n");
+	//grf_printf("task_create8\n");
 
 	//获取控件
 	battery_icon_5 = grf_ctrl_get_form_id(GRF_VIEW08_CHARGING_ID, VIEW08_CHARGING_IMAGE4_ID);
@@ -188,7 +226,7 @@ void task_create08()
 
 void task_del08()
 {
-	grf_printf("task_del08\n");
+	//grf_printf("task_del08\n");
 
 	grf_task_del(key_task08);
 	grf_task_del(background_red_yellow_green_task);

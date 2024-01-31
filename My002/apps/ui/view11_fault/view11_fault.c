@@ -180,17 +180,27 @@ static u8 *fault_image_name5[37] = {
 //创建故障函数
 void fault_task_cb()
 {
+	control_ytl_mute_v_away();  //快速按静音键时,控制太快的按键丢掉
 	//grf_printf("故障显示界面\n");
 	//grf_printf("ytl_view_get_cur_id == %d\n",ytl_view_get_cur_id);
 	//grf_printf("isCmdCompletedBuf[11] == %d\n",isCmdCompletedBuf[11]);
-	if (ytl_help) {
-		ytl_help = GRF_FALSE;
-		grf_view_set_dis_view(GRF_VIEW12_HELP_ID);
+	if (ytl_view_get_cur_id == GRF_VIEW02_CLEANING_ID ||
+		ytl_view_get_cur_id == GRF_VIEW05_STERILIZATION_FLUID_PREPARATION_ID ||
+		ytl_view_get_cur_id == GRF_VIEW07_WATER_SUCTION_ID ||
+		ytl_view_get_cur_id == GRF_VIEW18_ENGINEERING_TEST_MODE_ID)
+	{
+		if (ytl_help) {
+			ytl_help = GRF_FALSE;
+			grf_view_set_dis_view(GRF_VIEW12_HELP_ID);
+		}
 	}
 	if (isCmdCompletedBuf[11])
 	{
 		if (ytl_fault[1] || ytl_fault[2] || ytl_fault[3] || ytl_fault[4] || ytl_fault[5] || ytl_fault[6])
 		{
+			if (ytl_self_cleaning) {
+				ytl_self_cleaning = GRF_FALSE;
+			}
 			if (ytl_fault_val == 1)
 			{
 				//请安装清水箱
@@ -199,9 +209,9 @@ void fault_task_cb()
 					//grf_printf("ytl_fault[1] == %d\n",ytl_fault[1]);
 					if (ytl_fault[11] == 0)
 					{
-						grf_printf("语言播报：请安装清水箱\n");
+						//grf_printf("语言播报：请安装清水箱\n");
 						//语音播报测试:"请安装清水箱"
-						switch_language_pack("11_01");
+						switch_language_pack("11_01_fault");
 						//发送串口数据
 						grf_reg_com_send(0x05, 0xE0, 0x01, 0x00, 0x00);
 
@@ -228,7 +238,7 @@ void fault_task_cb()
 						}
 					}
 					ytl_fault[11] += 1;
-					grf_printf("ytl_fault[11] == %d\n",ytl_fault[11]);
+					//grf_printf("ytl_fault[11] == %d\n",ytl_fault[11]);
 				}
 			}
 			else if (ytl_fault_val == 2)
@@ -239,9 +249,9 @@ void fault_task_cb()
 					//grf_printf("ytl_fault[2] == %d\n",ytl_fault[2]);
 					if (ytl_fault[12] == 0)
 					{
-						grf_printf("语言播报：请安装污水箱\n");
+						//grf_printf("语言播报：请安装污水箱\n");
 						//语音播报测试:"请安装污水箱"
-						switch_language_pack("11_02");
+						switch_language_pack("11_02_fault");
 						grf_reg_com_send(0x05, 0xE0, 0x02, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_install_dirty_water_tank");
@@ -267,7 +277,7 @@ void fault_task_cb()
 						}
 					}
 					ytl_fault[12] += 1;
-					grf_printf("ytl_fault[12] == %d\n",ytl_fault[12]);
+					//grf_printf("ytl_fault[12] == %d\n",ytl_fault[12]);
 				}
 			}
 
@@ -276,12 +286,12 @@ void fault_task_cb()
 				//请清理滚刷
 				if (ytl_fault[3])
 				{
-					grf_printf("ytl_fault[3] == %d\n",ytl_fault[3]);
+					//grf_printf("ytl_fault[3] == %d\n",ytl_fault[3]);
 					if (ytl_fault[13] == 0)
 					{
-						grf_printf("语言播报：请清理滚刷\n");
+						//grf_printf("语言播报：请清理滚刷\n");
 						//语音播报测试:"请清理滚刷"
-						switch_language_pack("11_03");
+						switch_language_pack("11_03_fault");
 						grf_reg_com_send(0x05, 0xE0, 0x03, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_clean_the_brush_roll");
@@ -397,7 +407,7 @@ void fault_task_cb()
 						ytl_fault[13] = 20;
 					}
 					ytl_fault[13] += 1;
-					grf_printf("ytl_fault[13] == %d\n",ytl_fault[13]);
+					//grf_printf("ytl_fault[13] == %d\n",ytl_fault[13]);
 				}
 			}
 			else if (ytl_fault_val == 4)
@@ -405,12 +415,12 @@ void fault_task_cb()
 				//请加清水
 				if (ytl_fault[4])
 				{
-					grf_printf("ytl_fault[4] == %d\n",ytl_fault[4]);
+					//grf_printf("ytl_fault[4] == %d\n",ytl_fault[4]);
 					if (ytl_fault[14] == 0)
 					{
-						grf_printf("语言播报：请加清水\n");
+						//grf_printf("语言播报：请加清水\n");
 						//语音播报测试:"请加清水"
-						switch_language_pack("11_04");
+						switch_language_pack("11_04_fault");
 						grf_reg_com_send(0x05, 0xE0, 0x04, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_add_water");
@@ -442,7 +452,7 @@ void fault_task_cb()
 						}
 					}
 					ytl_fault[14] += 1;
-					grf_printf("ytl_fault[14] == %d\n",ytl_fault[14]);
+					//grf_printf("ytl_fault[14] == %d\n",ytl_fault[14]);
 				}
 			}
 
@@ -452,12 +462,12 @@ void fault_task_cb()
 				//请清理污水箱
 				if (ytl_fault[5])
 				{
-					grf_printf("ytl_fault[5] == %d\n",ytl_fault[5]);
+					//grf_printf("ytl_fault[5] == %d\n",ytl_fault[5]);
 					if (ytl_fault[15] == 0)
 					{
-						grf_printf("语言播报：请清理污水箱\n");
+						//grf_printf("语言播报：请清理污水箱\n");
 						//语音播报测试:"请清理污水箱"
-						switch_language_pack("11_05");
+						switch_language_pack("11_05_fault");
 						grf_reg_com_send(0x05, 0xE0, 0x05, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#please_clean_the_dirty_water_tank");
@@ -499,7 +509,7 @@ void fault_task_cb()
 						ytl_fault[15] = 20;
 					}
 					ytl_fault[15] += 1;
-					grf_printf("ytl_fault[15] == %d\n",ytl_fault[15]);
+					//grf_printf("ytl_fault[15] == %d\n",ytl_fault[15]);
 				}
 			}
 
@@ -508,12 +518,12 @@ void fault_task_cb()
 				//风机故障
 				if (ytl_fault[6])
 				{
-					grf_printf("ytl_fault[6] == %d\n",ytl_fault[6]);
+					//grf_printf("ytl_fault[6] == %d\n",ytl_fault[6]);
 					if (ytl_fault[16] == 0)
 					{
-						grf_printf("语言播报：风机故障\n");
+						//grf_printf("语言播报：风机故障\n");
 						//语音播报测试:"请清理污水箱"
-						switch_language_pack("11_06");
+						switch_language_pack("11_06_fault");
 						grf_reg_com_send(0x05, 0xE0, 0x06, 0x00, 0x00);
 
 						grf_label_set_txt(fault_label_name_ID25, "#fan_failure");
@@ -529,7 +539,7 @@ void fault_task_cb()
 						ytl_fault[16] = GRF_TRUE;
 					}
 					else {
-						grf_printf("ytl_fault[16] == %d\n",ytl_fault[16]);
+						//grf_printf("ytl_fault[16] == %d\n",ytl_fault[16]);
 					}
 				}
 			}
@@ -545,6 +555,11 @@ void fault_task_cb()
 			grf_ctrl_set_hidden(fault_container_name6_ID23,GRF_TRUE);
 
 			grf_view_set_dis_view(ytl_view_get_cur_id);
+			if (ytl_view_get_cur_id == GRF_VIEW09_SELF_CLEANING_MODE_ID)
+			{
+				//key_sound_tr660r_wavplay("dongPart002");  //按键音效
+				key_sound_tr660r_wavplay("du");  //按键音效
+			}
 
 			isCmdCompletedBuf[11] = GRF_FALSE;
 		}
@@ -553,7 +568,7 @@ void fault_task_cb()
 
 void task_create11()
 {
-	grf_printf("task_create11\n");
+	//grf_printf("task_create11\n");
 
 	//获取控件
 	fault_container_name1_ID2 = grf_ctrl_get_form_id(GRF_VIEW11_FAULT_ID,VIEW11_FAULT_CONTAINER0_ID);
@@ -589,11 +604,10 @@ void task_create11()
 
 	//创建任务
 	fault_task = grf_task_create(fault_task_cb,100,NULL);
-	grf_printf("故障任务创建完成\n");
 }
 
 void task_del11()
 {
-	grf_printf("task_del11\n");
+	//grf_printf("task_del11\n");
 	grf_task_del(fault_task);
 }

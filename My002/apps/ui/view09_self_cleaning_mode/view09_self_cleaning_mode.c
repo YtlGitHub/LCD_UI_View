@@ -63,14 +63,14 @@ void ytl_fault_get()
 	{
 		if(ytl_fault[i])
 		{
-			grf_printf("task_create09 故障跳转\n");
+			//grf_printf("task_create09 故障跳转\n");
 			ytl_fault[11] = GRF_FALSE;
 			ytl_fault[12] = GRF_FALSE;
 			ytl_fault[13] = GRF_FALSE;
 			ytl_fault[14] = GRF_FALSE;
 			ytl_fault[15] = GRF_FALSE;
 			ytl_fault[16] = GRF_FALSE;
-			grf_printf("ytl_fault[i] == %d,ytl_fault_val == %d",ytl_fault[i],ytl_fault_val);
+			//grf_printf("ytl_fault[i] == %d,ytl_fault_val == %d",ytl_fault[i],ytl_fault_val);
 			grf_view_set_dis_view(GRF_VIEW11_FAULT_ID);
 			break;
 		}
@@ -83,7 +83,7 @@ static void key_task09_cb(){
 	//按自清洁键选择模式
 	if (ytl_self_cleaning) {
 		ytl_self_cleaning = GRF_FALSE;
-		grf_printf("mode_select == %d",mode_select);
+		//grf_printf("mode_select == %d",mode_select);
 
 		if (mode_select) {
 			grf_ctrl_set_hidden(quick_ID2,GRF_FALSE);
@@ -101,7 +101,7 @@ static void key_task09_cb(){
 
 	if (mode_select) {
 		if (i >21) {
-			grf_printf("跳转到超强自清洁除菌液制备中\n");
+			//grf_printf("跳转到超强自清洁除菌液制备中\n");
 			i = 1;
 			ytl_mode_select_uart = 2;
 			grf_view_set_dis_view(GRF_VIEW05_STERILIZATION_FLUID_PREPARATION_ID);
@@ -111,7 +111,7 @@ static void key_task09_cb(){
 	}
 	else {
 		if (i >21) {
-			grf_printf("跳转到快速自清洁除菌液制备中\n");
+			//grf_printf("跳转到快速自清洁除菌液制备中\n");
 			i = 1;
 			ytl_mode_select_uart = 1;
 			grf_view_set_dis_view(GRF_VIEW05_STERILIZATION_FLUID_PREPARATION_ID);
@@ -124,7 +124,7 @@ static void key_task09_cb(){
 
 void task_create09()
 {
-	grf_printf("task_create9\n");
+	//grf_printf("task_create9\n");
 
 	//获取控件
 	quick_ID2 = grf_ctrl_get_form_id(GRF_VIEW09_SELF_CLEANING_MODE_ID,VIEW09_SELF_CLEANING_MODE_IMAGE1_ID);
@@ -147,6 +147,6 @@ void task_del09()
 {
 	j_self_cleaning_var = 0;
 	uart_only_sent_once_self_cleaning_var = 2;
-	grf_printf("task_del09\n");
+	//grf_printf("task_del09\n");
 	grf_task_del(key_task09);
 }

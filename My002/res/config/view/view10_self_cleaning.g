@@ -10,7 +10,7 @@
         "id" : 1,
         "ctrl_type" : 19,
         "pt" : {
-          "x" : 150,
+          "x" : 155,
           "y" : -50
         },
         "size" : {
@@ -31,12 +31,12 @@
         "name" : "label0",
         "id" : 2,
         "pt" : {
-          "x" : 200,
-          "y" : 530
+          "x" : 150,
+          "y" : 520
         },
         "size" : {
-          "width" : 400,
-          "height" : 70
+          "width" : 500,
+          "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255

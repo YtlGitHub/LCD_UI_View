@@ -15,6 +15,16 @@ static void label0_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
 }
+
+static void image1_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view10_self_cleaning_cc.h"
 void view10_self_cleaning_init(void)
 {
@@ -24,6 +34,7 @@ void view10_self_cleaning_init(void)
 void view10_self_cleaning_entry(void)
 {
 	ytl_view_get_cur_id = grf_view_get_cur_id(GRF_LAYER_UI);
+	grf_view_set_dis_view(GRF_VIEW03_VOICE_ICON_ID);
 	task_create10();
 }
 

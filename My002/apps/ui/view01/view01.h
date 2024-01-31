@@ -15,6 +15,9 @@ typedef enum {
 } view01_ctrls_id_e;
 
 
+s32 yk_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay,s32 value_start_a,s32 value_end_a,void *anim_cb_a,s32 value_start_b,s32 value_end_b,void *anim_cb_b);
+
+
 void view01_init(void);
 void view01_entry(void);
 void view01_exit(void);

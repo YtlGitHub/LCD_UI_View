@@ -348,7 +348,8 @@
         "parent_id" : 6,
         "ctrl_type" : 19,
         "pt" : {
-          "y" : 282
+          "x" : -6,
+          "y" : 276
         },
         "size" : {
           "width" : 198,
@@ -369,12 +370,12 @@
         "id" : 5,
         "parent_id" : 4,
         "pt" : {
-          "x" : 11,
-          "y" : 18
+          "x" : 40,
+          "y" : 10
         },
         "size" : {
-          "width" : 171,
-          "height" : 196
+          "width" : 100,
+          "height" : 160
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -384,6 +385,15 @@
       "txt" : "1",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 8421631,
           "font_lib" : "1.ttf",
@@ -426,7 +436,8 @@
         "parent_id" : 7,
         "ctrl_type" : 19,
         "pt" : {
-          "y" : 282
+          "x" : -6,
+          "y" : 276
         },
         "size" : {
           "width" : 198,
@@ -447,12 +458,12 @@
         "id" : 16,
         "parent_id" : 14,
         "pt" : {
-          "x" : 11,
-          "y" : 18
+          "x" : 40,
+          "y" : 10
         },
         "size" : {
-          "width" : 171,
-          "height" : 196
+          "width" : 100,
+          "height" : 160
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -504,7 +515,8 @@
         "parent_id" : 17,
         "ctrl_type" : 19,
         "pt" : {
-          "y" : 282
+          "x" : -6,
+          "y" : 276
         },
         "size" : {
           "width" : 198,
@@ -525,12 +537,12 @@
         "id" : 20,
         "parent_id" : 19,
         "pt" : {
-          "x" : 11,
-          "y" : 18
+          "x" : 40,
+          "y" : 10
         },
         "size" : {
-          "width" : 171,
-          "height" : 196
+          "width" : 100,
+          "height" : 160
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -552,6 +564,6 @@
     "v_name" : "view14_help2",
     "v_id" : 15,
     "bg_color" : 4294967295,
-    "bg_image" : "\\background\\Smart_background.png"
+    "bg_image" : "/background/Smart_background.png"
   }
 }

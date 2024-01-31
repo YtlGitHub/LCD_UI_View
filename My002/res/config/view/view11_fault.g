@@ -182,12 +182,12 @@
         "name" : "label0",
         "id" : 25,
         "pt" : {
-          "x" : 170,
-          "y" : 550
+          "x" : 150,
+          "y" : 520
         },
         "size" : {
-          "width" : 456,
-          "height" : 66
+          "width" : 500,
+          "height" : 50
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -626,6 +626,6 @@
     "v_name" : "view11_fault",
     "v_id" : 11,
     "bg_color" : 4294967295,
-    "bg_image" : "\\background\\Smart_background.png"
+    "bg_image" : "/background/home_menu_basebg00.png"
   }
 }

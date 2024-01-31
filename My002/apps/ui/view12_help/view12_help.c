@@ -37,6 +37,14 @@ static void first_display()
 	else if (i == 4) {
 		grf_ctrl_set_hidden(help_img_name_ID1, GRF_TRUE);  //隐藏图片
 		grf_ctrl_set_hidden(help_qrcode_name_ID5, GRF_FALSE);  //显示二维码
+		if (ytl3_switch_language == 3)
+		{
+			grf_qrcode_updata_data(help_qrcode_name_ID5,"https://hiberg.ru/servis");
+		}
+		else
+		{
+			grf_qrcode_updata_data(help_qrcode_name_ID5,"https://www.baidu.com");
+		}
 	}
 
 	//图片/二维码,下方1/4和文字显示
@@ -65,11 +73,10 @@ static void first_display()
 
 //按键操作
 void key_task12_cb(){
+	control_ytl_mute_v_away();  //快速按静音键时,控制太快的按键丢掉
 	if (ytl_right)
 	{
 		ytl_right = GRF_FALSE;
-		grf_printf("右键\n");
-
 		i++;
 		if (i > 4)
 		{
@@ -84,6 +91,14 @@ void key_task12_cb(){
 		else if (i == 4) {
 			grf_ctrl_set_hidden(help_img_name_ID1, GRF_TRUE);
 			grf_ctrl_set_hidden(help_qrcode_name_ID5, GRF_FALSE);
+			if (ytl3_switch_language == 3)
+			{
+				grf_qrcode_updata_data(help_qrcode_name_ID5,"https://hiberg.ru/servis");
+			}
+			else
+			{
+				grf_qrcode_updata_data(help_qrcode_name_ID5,"https://www.baidu.com");
+			}
 		}
 
 		if (i == 1)
@@ -113,35 +128,35 @@ void key_task12_cb(){
 		if (i == 1)
 		{
 			grf_view_set_dis_view(GRF_VIEW13_HELP1_ID);  //快速指南
-			grf_printf("快速指南 \n");
+			//grf_printf("快速指南 \n");
 		}
 		else if (i == 2)
 		{
 			grf_view_set_dis_view(GRF_VIEW14_HELP2_ID);  //保养攻略
-			grf_printf("保养攻略 \n");
+			//grf_printf("保养攻略 \n");
 		}
 		else if (i == 3)
 		{
 			grf_view_set_dis_view(GRF_VIEW15_HELP3_ID);  //拆除手柄
-			grf_printf("拆除手柄 \n");
+			//grf_printf("拆除手柄 \n");
 		}
 		else if (i == 4)
 		{
 			grf_view_set_dis_view(GRF_VIEW16_HELP4_ID);  //联系售后
-			grf_printf("联系售后 \n");
+			//grf_printf("联系售后 \n");
 		}
 	}
 	else if (ytl_back)
 	{
 		ytl_back = GRF_FALSE;
-		grf_printf("view12:返回键\n");
+		//grf_printf("view12:返回键\n");
 		grf_view_set_dis_view(ytl_view_get_cur_id);  //在帮助界面返回
 	}
 }
 
 void task_create12()
 {
-	grf_printf("task_create12\n");
+	//grf_printf("task_create12\n");
 
 	//获取控件
 	help_img_name_ID1 = grf_ctrl_get_form_id(GRF_VIEW12_HELP_ID,VIEW12_HELP_IMAGE0_ID);
@@ -157,6 +172,6 @@ void task_create12()
 
 void task_del12()
 {
-	grf_printf("task_del12\n");
+	//grf_printf("task_del12\n");
 	grf_task_del(key_task12);
 }

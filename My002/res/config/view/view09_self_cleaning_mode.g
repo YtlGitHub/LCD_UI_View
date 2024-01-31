@@ -24,6 +24,15 @@
       "txt" : "#self_cleaning_mode",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -132,12 +141,12 @@
         "name" : "label9",
         "id" : 16,
         "pt" : {
-          "x" : 250,
+          "x" : 210,
           "y" : 530
         },
         "size" : {
-          "width" : 119,
-          "height" : 41
+          "width" : 159,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -147,6 +156,15 @@
       "txt" : "#press",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -189,8 +207,8 @@
           "y" : 530
         },
         "size" : {
-          "width" : 135,
-          "height" : 41
+          "width" : 230,
+          "height" : 40
         },
         "scrollbar_t" : { },
         "alpha" : 255
@@ -201,6 +219,15 @@
       "txt" : "#select",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -259,11 +286,11 @@
         "id" : 7,
         "parent_id" : 2,
         "pt" : {
-          "x" : 100,
+          "x" : 45,
           "y" : 75
         },
         "size" : {
-          "width" : 200,
+          "width" : 310,
           "height" : 40
         },
         "scrollbar_t" : { },
@@ -329,17 +356,27 @@
           "y" : 30
         },
         "size" : {
-          "width" : 140,
+          "width" : 200,
           "height" : 65
         },
         "scrollbar_t" : { },
         "alpha" : 255
       },
+      "dis_mode_e" : 3,
       "animspeed" : 50,
       "align_e" : 1,
       "txt" : "#quick",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -371,6 +408,15 @@
       "txt" : "#about_minutes_2",
       "styles" : [ {
         "name" : "style",
+        "body_t" : {
+          "padding" : {
+            "top" : 2147483647,
+            "bottom" : 2147483647,
+            "left" : 2147483647,
+            "right" : 2147483647,
+            "inner" : 2147483647
+          }
+        },
         "txt_t" : {
           "color" : 16777215,
           "font_lib" : "1.ttf",
@@ -429,11 +475,11 @@
         "id" : 9,
         "parent_id" : 4,
         "pt" : {
-          "x" : 100,
-          "y" : 70
+          "x" : 45,
+          "y" : 75
         },
         "size" : {
-          "width" : 200,
+          "width" : 310,
           "height" : 40
         },
         "scrollbar_t" : { },

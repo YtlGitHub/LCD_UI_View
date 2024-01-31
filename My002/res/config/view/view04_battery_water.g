@@ -27,7 +27,6 @@
       "range_t" : {
         "maxvalue" : 100
       },
-      "know_dis_en" : true,
       "arc_t_main" : {
         "color" : 4278223103,
         "width" : 10,
@@ -105,7 +104,7 @@
         "name" : "label0",
         "id" : 4,
         "pt" : {
-          "x" : 60,
+          "x" : 65,
           "y" : 450
         },
         "size" : {
@@ -145,11 +144,11 @@
         "name" : "label2",
         "id" : 6,
         "pt" : {
-          "x" : 590,
+          "x" : 564,
           "y" : 450
         },
         "size" : {
-          "width" : 161,
+          "width" : 212,
           "height" : 56
         },
         "scrollbar_t" : { },
@@ -176,6 +175,32 @@
           "font_size" : 40
         }
       } ]
+    }
+  }, {
+    "CLASSNAME" : "image",
+    "theme" : "youth",
+    "type" : 19,
+    "property" : {
+      "pub_t" : {
+        "name" : "image2",
+        "id" : 5,
+        "parent_id" : 1,
+        "ctrl_type" : 19,
+        "pt" : {
+          "x" : 289
+        },
+        "size" : {
+          "width" : 183,
+          "height" : 19
+        },
+        "scrollbar_t" : { },
+        "alpha" : 255
+      },
+      "init_img" : "/icon/04_degree_fouling1.png",
+      "rotate_pt" : {
+        "x" : 91,
+        "y" : 380
+      }
     }
   } ],
   "view" : {
