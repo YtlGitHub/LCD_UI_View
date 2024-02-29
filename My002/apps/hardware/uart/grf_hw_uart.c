@@ -77,7 +77,7 @@ u8 *languageBuf[EXTERNAL_BUFFER_SIZE_languageBuf] = {"ch","en","tu","ru"};  //�
 
 
 //切换语言音频
-void switch_language_pack(char filename[])
+void switch_language_pack(u8 filename[])
 {
 	char sound_array[255];
 	sprintf(sound_array,"/rodata/sound/%s/%s_%s.wav", languageBuf[ytl3_switch_language],filename,languageBuf[ytl3_switch_language]);
@@ -86,7 +86,7 @@ void switch_language_pack(char filename[])
 #endif
 }
 //按键音
-void key_sound_tr660r_wavplay(char filename[])
+void key_sound_tr660r_wavplay(u8 filename[])
 {
 	char sound_array[255];
 	sprintf(sound_array,"/rodata/sound/%s.wav", filename);
@@ -325,11 +325,7 @@ static void USARTy_IRQHandler(u8* databuf)
 	cmdBuf[2] = databuf[6];
 	cmdBuf[3] = databuf[7];
 
-	for (u8 i = 0; i <= EXTERNAL_BUFFER_SIZE; ++i)
-	{
-		isCmdCompletedBuf[i] = GRF_TRUE;
-		//grf_printf("isCmdCompletedBuf[%d] = %d;\n",i,isCmdCompletedBuf[i]);
-	}
+	memset(isCmdCompletedBuf, GRF_TRUE, sizeof(isCmdCompletedBuf)/sizeof(u8));
 
 	//检查是否有故障
 	if (cmdBuf[0] == 0xE0 ||
@@ -377,14 +373,12 @@ static void USARTy_IRQHandler(u8* databuf)
 				ytl_help = GRF_FALSE;   //帮助键
 				if (ytl_view_get_cur_id == GRF_VIEW18_ENGINEERING_TEST_MODE_ID)
 				{
-					//key_sound_tr660r_wavplay("dongPart002");  //按键音效
 					key_sound_tr660r_wavplay("du");  //按键音效
 				}
 				else
 				{
 					if (cmdBuf[1] == 0x03 || (cmdBuf[1] == 0x08 && cmdBuf[2] == 0x03))
 					{
-						//key_sound_tr660r_wavplay("dongPart002");  //按键音效
 						key_sound_tr660r_wavplay("du");  //按键音效
 					}
 					else if (cmdBuf[1] == 0x07)
@@ -393,7 +387,6 @@ static void USARTy_IRQHandler(u8* databuf)
 							ytl_view_get_cur_id == GRF_VIEW09_SELF_CLEANING_MODE_ID ||
 							ytl_view_get_cur_id == GRF_VIEW10_01_PLEASE_CLEAN_THE_DIRTY_WATER_TANK_ID)
 						{
-							//key_sound_tr660r_wavplay("dongPart002");  //按键音效
 							key_sound_tr660r_wavplay("du");  //按键音效
 						}
 					}
@@ -731,12 +724,11 @@ static s32 grf_comm_handle(u8* data)
     */
     //grf_reg_s_set(addr,data,len);
 
-	/*  打印接收串口信息
-	for (u8 j = 0; j < data[3]+3; j++)
-	{
-		grf_printf("data[%d] == 0x%02x\n",j,data[j]);
-	}
-	*/
+	//打印接收串口信息
+//	for (u8 j = 0; j < data[3]+3; j++)
+//	{
+//		grf_printf("data[%d] == 0x%02x\n",j,data[j]);
+//	}
 
 	//求校验和
 	u8 crc = 0;
@@ -750,6 +742,7 @@ static s32 grf_comm_handle(u8* data)
 
 	if (data[data[3]+2]==crc)
 	{
+		//grf_printf("crc == 0x%02x\n",crc);
 		grf_reg_set_user(data);
 		return GRF_OK;
 	}
@@ -763,8 +756,12 @@ static s32 grf_comm_handle(u8* data)
 static void recive_data_handle(u8* databuf,u32 datalen)
 {
 
-	//打印接收串口信息长度
-	//grf_printf("recive_data_handle datalen =aaaaaaaaaaaaaaaaaaa= %d\n",datalen);
+//	打印接收串口信息长度
+//	grf_printf("recive_data_handle datalen =aaaaaaaaaaaaaaaaaaa= %d\n",datalen);
+//	for(u16 i=0;i<15;i++)
+//	{
+//		grf_printf("databuf[%d]=0x%02x\n",i,databuf[i]);
+//	}
 
 	u16 i=0;
 	static u16 last_data_num=0;
@@ -773,45 +770,50 @@ static void recive_data_handle(u8* databuf,u32 datalen)
 		datalen = datalen-last_data_num;
 	}
 	if(last_data_num){
-		memcpy(RX_HAND_BUF+last_data_num,databuf,datalen);
-		databuf=RX_HAND_BUF;
+		memcpy(RX_HAND_BUF+last_data_num,databuf,datalen);  //把接收到的指令添加到RX_HAND_BUF后面
+		databuf=RX_HAND_BUF;  //再把添加完的全部指令赋值给databuf去执行下面的通讯协议
 		datalen+=last_data_num;
 		last_data_num = 0;
+	}
+	else {
+		memcpy(RX_HAND_BUF,databuf,datalen);  //拷贝接收到的指令给RX_HAND_BUF，这样就不会把多余的错误的指令去执行
+		databuf=RX_HAND_BUF;  //再把需要执行的数组赋值给databuf去执行下面的通讯协议
 	}
 #endif
 
 #if UART_LASTBUFF
-	/*
-	//打印接收串口信息
-	grf_printf("datalen =dddddddddddddddddddddddddddddd= %d\n",datalen);
-	for(u8 i=0;i<datalen;i++)
-	{
-		grf_printf("databuf[%d]=0x%02x\n",i,databuf[i]);
-	}
-	*/
+
+//  打印接收串口信息
+//	grf_printf("datalen =dddddddddddddddddddddddddddddd= %d\n",datalen);
+//	for(u16 i=0;i<15;i++)
+//	{
+//		grf_printf("databuf[%d]=0x%02x RX_HAND_BUF[%d]=0x%02x\n\n",i,databuf[i],i,RX_HAND_BUF[i]);
+//	}
 
 	for(i=0;datalen-i>=7 && i<=datalen;i++)  //最短的指令为7个
 	{
-		if(databuf[i]==HEAD_FH && databuf[i+1]==HEAD_FL && datalen-i >= 7 && grf_comm_handle(databuf+i)==GRF_OK)
+		if(databuf[i]==HEAD_FH && databuf[i+1]==HEAD_FL && grf_comm_handle(databuf+i)==GRF_OK)
 		{
 			i += (databuf[i+3])+2;
+		}
+		else {
+			break;
 		}
 	}
 	last_data_num = datalen-i;
 #endif
 
 #if UART_LASTBUFF
-	if(last_data_num<=256 && last_data_num!=0)
+	if(last_data_num<=27 && last_data_num!=0)
 	{
 		u8  last_data_buf[256] = {0};
 		memcpy(last_data_buf,databuf+i,last_data_num);
 		memcpy(RX_HAND_BUF,last_data_buf,last_data_num);
 	}else{
 		last_data_num=0;
+		memset(RX_HAND_BUF, 0, sizeof(RX_HAND_BUF)/sizeof(u8));  //利用memset函数清空数组里面的所有元素把值都设为0
 	}
 #endif
-
-
 }
 
 

@@ -93,7 +93,7 @@
   "water_shortage" : "Su eksikliği",
   "normal_water_content" : "Normal su içeriği",
   "select_language" : "Dili seçmek için lütfen seç düğmesine basın ve seçim tamamlandıktan sonra lütfen şarj testi için tabana geri koyun",
-    "chinese" : "土耳其语",
+  "chinese" : "土耳其语",
   "english" : "土耳其语",
   "turkish" : "Türk",
   "russian" : "土耳其语"

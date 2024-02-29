@@ -93,7 +93,7 @@
   "water_shortage" : "缺水",
   "normal_water_content" : "水量正常",
   "select_language" : "请按选择键选择语言，选择完成之后，请放回底座进行充电测试",
-    "chinese" : "中文",
+  "chinese" : "中文",
   "english" : "中文",
   "turkish" : "Çince",
   "russian" : "中文"

@@ -364,7 +364,6 @@ void key_task17_cb()
 		ytl_confirmation = GRF_FALSE;
 		if (i == 1)
 		{
-			//key_sound_tr660r_wavplay("dongPart002");  //按键音效
 			key_sound_tr660r_wavplay("du");  //按键音效
 			//滚刷照明
 			if (*languageBuf[ytl3_switch_language] == *"tu")  //如果是土耳其语就把滚刷照明改成语言图标

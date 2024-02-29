@@ -36,7 +36,7 @@ void control_ytl_mute_v_away(void)
 	if (ytl_mute_v <= 9) {
 		ytl_mute = GRF_FALSE;
 		ytl_mute_v++;
-		//grf_printf("ytl_mute_v == %d\n",ytl_mute_v);
+//		grf_printf("ytl_mute_v == %d\n",ytl_mute_v);
 	}
 	else if (ytl_mute_v > 9 && ytl_mute)
 	{
@@ -69,12 +69,6 @@ void voice_image_cb()
 		grf_img_set_src(voice_image0,img_src1[ytl2_voice_image_val]);
 		isCmdCompletedBuf[3] = GRF_FALSE;
 	}
-//	if (ytl_help) {
-//		ytl_help = GRF_FALSE;
-//		if (ytl_view_get_cur_id != GRF_VIEW09_SELF_CLEANING_MODE_ID) {
-//			grf_view_set_dis_view(GRF_VIEW12_HELP_ID);
-//		}
-//	}
 	if (isCmdCompletedBuf[33])
 	{
 		//grf_printf("isCmdCompletedBuf[33] =ytl_battery_quantity_val= %d\n",ytl_battery_quantity_val);

@@ -40,7 +40,7 @@
   "back_help_button" : "Кнопка помощь/назад",
   "self_cleaning_button" : "Кнопка самоочистки",
   "mute_button" : "кнопка Без звука",
-  "Tilt_device_start_cleaning" : "Наклоните прукоятку назад\nчтобы начать уборку.",
+  "Tilt_device_start_cleaning" : "Наклоните прукоятку назад\nчтобы начать уборку",
   "stand_device_upright_pause_cleaning" : "Чтобы приостановить уборку\nпоставьте пылесос вертикально",
   "system_setting" : "Системные настройки",
   "roller_brush_lighting" : "Подсветка валика",
@@ -93,7 +93,7 @@
   "water_shortage" : "缺水",
   "normal_water_content" : "水量正常",
   "select_language" : "请按选择键选择语言，选择完成之后，请放回底座进行充电测试",
-    "chinese" : "俄语",
+  "chinese" : "俄语",
   "english" : "俄语",
   "turkish" : "Rusça",
   "russian" : "俄语"
