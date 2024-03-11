@@ -97,11 +97,9 @@ static void key_display_test(u8 data1,u8 data2)
 	{
 		if (data2 == 0x00 || data2 == 0x01) {
 			grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,key_display_name_array[8]);
-			grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 		}
 		else if (data2 == 0x03) {
 			grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,key_display_name_array[9]);
-			grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 		}
 	}
 	else {
@@ -121,7 +119,6 @@ static void key_display_test(u8 data1,u8 data2)
 		else {
 			grf_label_set_txt(engineering_test_mode_label2_key_name_ID3, key_display_name_array[data1]);
 		}
-		grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 	}
 }
 
@@ -308,6 +305,7 @@ void engineering_test_mode_task18_cb()
 				//grf_printf("Key Display test\n");  //按键显示测试
 				key_display_test(cmdBuf[1],cmdBuf[2]);
 			}
+			grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 			isCmdCompletedBuf[19] = GRF_FALSE;
 		}
 		else if(cmdBuf[0] == 0xF0)
@@ -323,13 +321,11 @@ void engineering_test_mode_task18_cb()
 				if (cmdBuf[2] == 0x00)  //缺水
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#water_shortage");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 				if (cmdBuf[2] == 0x01)  //水量正常
 				{
 					//grf_printf("Normal water content\n");  //水量正常
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 			}
 			control_display_time();
@@ -339,45 +335,38 @@ void engineering_test_mode_task18_cb()
 			if (cmdBuf[1] == 0x03)  //竖起机身停止清扫
 			{
 				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#upright_the_device");
-				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 			}
 			if (cmdBuf[1] == 0x04)  //倾斜机身开始清扫
 			{
 				grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#tilt_the_device");
-				grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 			}
-			control_display_time();
+			//control_display_time();
 		}
 		else if(cmdBuf[0] == 0x9A)  //脏污程度
 		{
 			if (cmdBuf[1] == 0x01)
 			{
-				control_display_time();
 				if (cmdBuf[2] == 0x00)  //脏污程度(蓝色)
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#degree_0_blue");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 				if (cmdBuf[2] == 0x01)  //脏污程度(轻度1)
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#degree_1_mild_1");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 				if (cmdBuf[2] == 0x02)  //脏污程度(轻度2)
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#degree_2_mild_2");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 				if (cmdBuf[2] == 0x03)  //脏污程度(重度1)
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#degree_3_mild_1");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
 				if (cmdBuf[2] == 0x04)  //脏污程度(重度2)
 				{
 					grf_label_set_txt(engineering_test_mode_label2_key_name_ID3,"#degree_4_mild_2");
-					grf_label_set_txt_color(engineering_test_mode_label2_key_name_ID3,GRF_COLOR_ORANGE);
 				}
+				//control_display_time();
 			}
 		}
 	}

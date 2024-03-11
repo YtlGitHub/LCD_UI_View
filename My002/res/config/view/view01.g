@@ -170,6 +170,55 @@
       } ]
     }
   }, {
+    "CLASSNAME" : "arc",
+    "theme" : "youth",
+    "type" : 5,
+    "property" : {
+      "pub_t" : {
+        "name" : "arc0",
+        "id" : 10,
+        "ctrl_type" : 5,
+        "pt" : {
+          "x" : 244,
+          "y" : 175
+        },
+        "size" : {
+          "width" : 321,
+          "height" : 321
+        },
+        "t_mode" : 1,
+        "scrollbar_t" : { },
+        "alpha" : 255
+      },
+      "angle_t" : {
+        "start_angle" : 90,
+        "end_angle" : 89
+      },
+      "range_t" : {
+        "maxvalue" : 300
+      },
+      "know_dis_en" : true,
+      "arc_t_main" : {
+        "color" : 4280391411,
+        "width" : 4,
+        "opa" : 255
+      },
+      "arc_t_inc" : {
+        "color" : 4294901760,
+        "width" : 5,
+        "opa" : 255
+      },
+      "styles" : [ {
+        "style_part" : 196608,
+        "name" : "knob_style",
+        "body_t" : {
+          "main_color" : 16711680,
+          "grad_color" : 16711680,
+          "radius" : -1
+        }
+      } ]
+    }
+  }, {
     "CLASSNAME" : "image",
     "theme" : "youth",
     "type" : 19,

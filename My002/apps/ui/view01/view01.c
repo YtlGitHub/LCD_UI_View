@@ -13,6 +13,7 @@
 
 //创建任务名
 static grf_task_t *key_task1 = NULL;
+static grf_task_t *arc0_task1 = NULL;
 
 
 //创建控件名
@@ -22,10 +23,13 @@ static grf_ctrl_t *img2 = NULL;
 static grf_ctrl_t *img3 = NULL;
 static grf_ctrl_t *cont0 = NULL;
 static grf_ctrl_t *label_name_ID1 = NULL;  //选择模式图片下方文字控件名:1智能清扫,2智能除菌,3智能吸水,4系统设置
+static grf_ctrl_t *arc0_ID10 = NULL;  //选择模式选择后自动开始到计时结束自动进入对应模式
 
 
 //自定义变量
 static u8 i = 1;  //控制选择模式1-4循环轮播图
+static u16 arc0_value = 0;  //arc0的值
+static u16 arc0_i = 0;  //arc0计数
 
 
 //自定义数组
@@ -46,6 +50,8 @@ static void anim_img_zoom(void* var, u32 v)
 //第一次进入显示的界面
 static void first_display()
 {
+	arc0_value = 0;
+	arc0_i = switch_speed/10;
 	if (i == 1) {
 		grf_ctrl_move_forground(img0);
 
@@ -178,7 +184,8 @@ s32 yk_animation_set(grf_ctrl_t* ctrl,u32 time,u32 back_time,u32 back_time_delay
 }
 
 //按键任务
-static void key_task01_cb(){
+static void key_task01_cb()
+{
 	control_key_failure();
 	//丢掉太快的静音键
 	control_ytl_mute_v_away();
@@ -187,7 +194,9 @@ static void key_task01_cb(){
 	{
 		ytl_right = GRF_FALSE;
 		//grf_printf("ytl_right_task1 == %d\n",ytl_right);
-
+		arc0_value = 0;
+		arc0_i = 0;
+		grf_ctrl_set_hidden(arc0_ID10, GRF_TRUE);  //隐藏arc控件
 		for(u8 i=0;i<4;i++)
 		{
 			grf_ctrl_t *obj=grf_ctrl_get_child(cont0,i);
@@ -249,6 +258,25 @@ static void key_task01_cb(){
 }
 
 
+//arc0任务
+static void arc0_task01_cb()
+{
+	arc0_value++;
+	if (arc0_i < switch_speed/10) {
+		arc0_i++;
+	}
+	else if (arc0_i == switch_speed/10) {
+		arc0_value = 0;
+		arc0_i++;
+		grf_ctrl_set_hidden(arc0_ID10, GRF_FALSE);  //显示arc控件
+	}
+	if (arc0_value == 300) {
+		ytl_confirmation = GRF_TRUE;
+	}
+	grf_arc_set_value(arc0_ID10,arc0_value);
+}
+
+
 void task_create01()
 {
 	//grf_printf("task_create1\n");
@@ -260,11 +288,13 @@ void task_create01()
 	img3 = grf_ctrl_get_form_id(GRF_VIEW01_ID, VIEW01_IMAGE4_ID);
 	cont0 = grf_ctrl_get_form_id(GRF_VIEW01_ID, VIEW01_CONTAINER0_ID);
 	label_name_ID1 = grf_ctrl_get_form_id(GRF_VIEW01_ID, VIEW01_LABEL0_ID);
+	arc0_ID10 = grf_ctrl_get_form_id(GRF_VIEW01_ID, VIEW01_ARC0_ID);
 
 	select_mode_value_var_i();
 
-	//创建按键任务
-	key_task1 = grf_task_create(key_task01_cb,100,NULL);
+	//创建任务
+	key_task1 = grf_task_create(key_task01_cb,100,NULL);  //按键任务
+	arc0_task1 = grf_task_create(arc0_task01_cb,10,NULL);  //选中模式后倒计时进入对应模式任务
 }
 
 
@@ -272,4 +302,5 @@ void task_del01(void)
 {
 	//grf_printf("task_del01\n");
 	grf_task_del(key_task1);
+	grf_task_del(arc0_task1);
 }

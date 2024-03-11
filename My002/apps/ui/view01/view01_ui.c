@@ -45,6 +45,16 @@ static void image3_event(grf_ctrl_t *ctrl, grf_event_e event)
 {
 	
 }
+
+static void arc0_event(grf_ctrl_t *ctrl, grf_event_e event)
+{
+//	switch (event) {
+//		case GRF_EVENT_CLICKED:{
+//
+//		}break;
+//	}
+}
+
 #include "../../../libs/appscc/view01_cc.h"
 void view01_init(void)
 {

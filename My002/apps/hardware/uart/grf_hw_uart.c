@@ -790,7 +790,7 @@ static void recive_data_handle(u8* databuf,u32 datalen)
 //		grf_printf("databuf[%d]=0x%02x RX_HAND_BUF[%d]=0x%02x\n\n",i,databuf[i],i,RX_HAND_BUF[i]);
 //	}
 
-	for(i=0;datalen-i>=7 && i<=datalen;i++)  //最短的指令为7个
+	for(i=0;datalen-i>=7;i++)  //最短的指令为7个
 	{
 		if(databuf[i]==HEAD_FH && databuf[i+1]==HEAD_FL && grf_comm_handle(databuf+i)==GRF_OK)
 		{
@@ -826,6 +826,7 @@ void grf_uart_init(void)
     cfg_t.parity_e = UART_PARITY_NONE;
     cfg_t.stop_e = UART_STOP_1;
     s32 ret = grf_drv_uart_open(cfg_t);
+    grf_printf("ret == %d\n",ret);
     if(ret == GRF_OK)
     {
         grf_drv_uart_rev_set_bfun(recive_data_handle,1024);

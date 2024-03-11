@@ -1,7 +1,7 @@
 #include "../../apps.h"
 
 
-//创建故障任务
+//创建按键任务
 grf_task_t *key_task12 = NULL;
 
 
@@ -14,25 +14,26 @@ grf_ctrl_t *help_qrcode_name_ID5 = NULL;  //帮助模式二维码控件名
 
 //自定义变量
 static u8 i = 1;  //控制循环轮播帮助模式里面的四张图
+static u8 i_val = 3;  //模式选择小于3不显示二维码，小于4显示二维码
 
 
 //自定义数组
-static u8 *help_image_name[4] = {
-	"/help/0.png",
+static u8 *help_image_name[3] = {
 	"/help/help_1_00.png",
 	"/help/help_2_00.png",
 	"/help/help_3_00.png"
 };  //帮助模式四张选择图片文件名
+static u8 i_val_array[4];  //下方1/4 或 1/3 显示，二维码不需要就1/3显示，二维码需要就1/4显示
+static u8 *help_label_name_ID3_array[4] = {"#quick_guide","#maintenance_strategy","#removing_handle","#contact_after_sales"};  //帮助模式下方四个文字对应显示
 
 
-//第一次进入显示的界面
-static void first_display()
+static void select_label_show()  //选择模式下方文字显示
 {
 	//图片/二维码,显示
 	if (i >= 1 && i < 4) {
 		grf_ctrl_set_hidden(help_qrcode_name_ID5, GRF_TRUE);  //隐藏二维码
 		grf_ctrl_set_hidden(help_img_name_ID1, GRF_FALSE);  //显示图片
-		grf_img_set_src(help_img_name_ID1, help_image_name[i]);
+		grf_img_set_src(help_img_name_ID1, help_image_name[i-1]);  //修改显示图片
 	}
 	else if (i == 4) {
 		grf_ctrl_set_hidden(help_img_name_ID1, GRF_TRUE);  //隐藏图片
@@ -46,28 +47,17 @@ static void first_display()
 			grf_qrcode_updata_data(help_qrcode_name_ID5,"https://www.baidu.com");
 		}
 	}
+	//下方1/4和文字显示
+	sprintf(i_val_array,"%d/%d",i,i_val);
+	grf_label_set_txt(help_label_name_ID4,i_val_array);  //下方1/4 或 1/3 显示
+	grf_label_set_txt(help_label_name_ID3,help_label_name_ID3_array[i-1]);  //下方 “快速指南” 或 “保养攻略” 或 “拆除手柄” 或 “联系售后” 文字显示
+}
 
-	//图片/二维码,下方1/4和文字显示
-	if (i == 1)
-	{
-		grf_label_set_txt(help_label_name_ID3,"#quick_guide");
-		grf_label_set_txt(help_label_name_ID4,"1/4");
-	}
-	else if (i == 2)
-	{
-		grf_label_set_txt(help_label_name_ID3,"#maintenance_strategy");
-		grf_label_set_txt(help_label_name_ID4,"2/4");
-	}
-	else if (i == 3)
-	{
-		grf_label_set_txt(help_label_name_ID3,"#removing_handle");
-		grf_label_set_txt(help_label_name_ID4,"3/4");
-	}
-	else if (i == 4)
-	{
-		grf_label_set_txt(help_label_name_ID3,"#contact_after_sales");
-		grf_label_set_txt(help_label_name_ID4,"4/4");
-	}
+
+//第一次进入显示的界面
+static void first_display()
+{
+	select_label_show();
 }
 
 
@@ -78,49 +68,11 @@ void key_task12_cb(){
 	{
 		ytl_right = GRF_FALSE;
 		i++;
-		if (i > 4)
+		if (i > i_val)
 		{
 			i = 1;
 		}
-
-		if (i > 0 && i < 4) {
-			grf_ctrl_set_hidden(help_img_name_ID1, GRF_FALSE);
-			grf_ctrl_set_hidden(help_qrcode_name_ID5, GRF_TRUE);
-			grf_img_set_src(help_img_name_ID1,help_image_name[i]);
-		}
-		else if (i == 4) {
-			grf_ctrl_set_hidden(help_img_name_ID1, GRF_TRUE);
-			grf_ctrl_set_hidden(help_qrcode_name_ID5, GRF_FALSE);
-			if (ytl3_switch_language == 3)
-			{
-				grf_qrcode_updata_data(help_qrcode_name_ID5,"https://hiberg.ru/servis");
-			}
-			else
-			{
-				grf_qrcode_updata_data(help_qrcode_name_ID5,"https://www.baidu.com");
-			}
-		}
-
-		if (i == 1)
-		{
-			grf_label_set_txt(help_label_name_ID3,"#quick_guide");
-			grf_label_set_txt(help_label_name_ID4,"1/4");
-		}
-		else if (i == 2)
-		{
-			grf_label_set_txt(help_label_name_ID3,"#maintenance_strategy");
-			grf_label_set_txt(help_label_name_ID4,"2/4");
-		}
-		else if (i == 3)
-		{
-			grf_label_set_txt(help_label_name_ID3,"#removing_handle");
-			grf_label_set_txt(help_label_name_ID4,"3/4");
-		}
-		else if (i == 4)
-		{
-			grf_label_set_txt(help_label_name_ID3,"#contact_after_sales");
-			grf_label_set_txt(help_label_name_ID4,"4/4");
-		}
+		select_label_show();
 	}
 	else if (ytl_confirmation)
 	{
